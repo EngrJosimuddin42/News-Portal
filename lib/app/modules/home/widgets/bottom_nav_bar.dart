@@ -16,28 +16,28 @@ class HomeBottomNavBar extends StatelessWidget {
 
     final items = [
       {
-        'label': 'Home',
+        'label': 'home',
         'darkSelected': AppAssets.homeIcon,
         'darkUnselected': AppAssets.home1Icon,
         'lightSelected': AppAssets.home2Icon,
         'lightUnselected': AppAssets.home3Icon,
       },
       {
-        'label': 'Trends',
+        'label': 'trends',
         'darkSelected': AppAssets.trendIcon,
         'darkUnselected': AppAssets.trend1Icon,
         'lightSelected': AppAssets.trend2Icon,
         'lightUnselected': AppAssets.trend3Icon,
       },
       {
-        'label': 'Notification',
+        'label': 'notification',
         'darkSelected': AppAssets.notificationIcon,
         'darkUnselected': AppAssets.notification1Icon,
         'lightSelected': AppAssets.notification2Icon,
         'lightUnselected': AppAssets.notification3Icon,
       },
       {
-        'label': 'Me',
+        'label': 'me',
         'darkSelected': AppAssets.person1Icon,
         'darkUnselected': AppAssets.personIcon,
         'lightSelected': AppAssets.person2Icon,
@@ -86,7 +86,7 @@ class HomeBottomNavBar extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        items[i]['label']!,
+                        items[i]['label']!.tr,
                         style: AppTextStyles.bodySmall.copyWith(
                           fontSize: 10.sp,
                           color: iconColor,

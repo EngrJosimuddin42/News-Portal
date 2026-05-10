@@ -60,8 +60,29 @@ class HomeController extends GetxController {
   String get userName => AuthController.to.user.value?.name ?? '';
 
   String get monthAndDay {
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return '${months[currentDate.value.month - 1]} ${currentDate.value.day}';
+    const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthsBn = ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'];
+
+    final int monthIndex = currentDate.value.month - 1;
+    final int day = currentDate.value.day;
+    final bool isBengali = Get.locale?.languageCode == 'bn';
+
+    if (isBengali) {
+      final String bengaliDay = _toBengaliNumber(day.toString());
+      return '${monthsBn[monthIndex]} $bengaliDay';
+    } else {
+      return '${monthsEn[monthIndex]} $day';
+    }
+  }
+
+  String _toBengaliNumber(String input) {
+    const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const bengali = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+
+    for (int i = 0; i < 10; i++) {
+      input = input.replaceAll(english[i], bengali[i]);
+    }
+    return input;
   }
 
   @override

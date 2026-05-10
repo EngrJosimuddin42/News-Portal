@@ -30,6 +30,15 @@ class AppTranslations extends Translations {
       'large': 'Large',
       'logout_confirmation': 'Are you sure you want to log out?',
 
+      // Days
+      'sun': 'Sun',
+      'mon': 'Mon',
+      'tues': 'Tues',
+      'wed': 'Wed',
+      'thurs': 'Thurs',
+      'fri': 'Fri',
+      'sat': 'Sat',
+
       // Common
       'save': 'Save',
       'cancel': 'Cancel',
@@ -68,6 +77,15 @@ class AppTranslations extends Translations {
       'medium': 'মাঝারি',
       'large': 'বড়',
       'logout_confirmation': 'আপনি কি নিশ্চিত যে আপনি লগ আউট করতে চান?',
+
+      // Days
+      'sun': 'রবি',
+      'mon': 'সোম',
+      'tues': 'মঙ্গল',
+      'wed': 'বুধ',
+      'thurs': 'বৃহস্পতি',
+      'fri': 'শুক্র',
+      'sat': 'শনি',
 
       // Common
       'save': 'সংরক্ষণ',
