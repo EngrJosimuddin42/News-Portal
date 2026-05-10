@@ -51,7 +51,7 @@ class PrivacyView extends StatelessWidget {
                     child: Switch(
                       value: SettingsController.to.isLocationVisible.value,
                       onChanged: (val) => SettingsController.to.toggleLocationVisible(val),
-                      activeColor:AppColors.textGreen,
+                      activeThumbColor:AppColors.textGreen,
                       thumbColor: WidgetStatePropertyAll(AppColors.scaffoldBg))))
               ],
             ),

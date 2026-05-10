@@ -90,7 +90,7 @@ class _SettingsViewState extends State<SettingsView> {
                                 SettingsController.to.toggleDarkMode(
                                     newValue);
                               },
-                              activeColor: AppColors.textGreen,
+                              activeThumbColor: AppColors.textGreen,
                               thumbColor: WidgetStatePropertyAll( AppColors.scaffoldBg)))),
                   onTap: () {
                     SettingsController.to.toggleDarkMode(

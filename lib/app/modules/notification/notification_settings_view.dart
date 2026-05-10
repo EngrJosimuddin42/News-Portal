@@ -213,7 +213,7 @@ class NotificationSettingsView extends StatelessWidget {
             child: Switch(
               value: value,
               onChanged: onChanged,
-              activeColor: AppColors.textGreen,
+              activeThumbColor: AppColors.textGreen,
             thumbColor:WidgetStatePropertyAll(Get.isDarkMode?Colors.black:Colors.white)))),
         ],
     );
@@ -243,7 +243,7 @@ class NotificationSettingsView extends StatelessWidget {
             child: Switch(
               value: value,
               onChanged: onChanged,
-              activeColor: AppColors.textGreen,
+              activeThumbColor: AppColors.textGreen,
               thumbColor:WidgetStatePropertyAll(Get.isDarkMode?Colors.black:Colors.white))),
       ],
     );

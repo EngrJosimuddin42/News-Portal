@@ -14,6 +14,7 @@ class TrendsController extends GetxController {
     filteredNews.value = allNews.toList();
   }
 
+  @override
   Future<void> refresh() async {
     isLoading.value = true;
     selectedTopic.value = '';

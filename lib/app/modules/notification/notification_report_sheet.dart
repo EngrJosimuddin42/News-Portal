@@ -68,21 +68,31 @@ class _ReportBottomSheetState extends State<NotificationReportSheet> {
       children: [
         _buildHeader('Select a reason'),
          Divider(color:Get.isDarkMode? Color(0xFF3D3C3C):Color(0xFFEDEDED), height: 1),
-        Obx(() => ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.reportReasons.length,
-          itemBuilder: (_, i) {
-            final reason = controller.reportReasons[i];
-            return RadioListTile<String>(
-                value: reason,
-                groupValue: _selectedReason,
-                onChanged: (val) => setState(() => _selectedReason = val),
-                title: Text(reason, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
-                activeColor:AppColors.white,
-                dense: true);
-          },
-        )),
+
+        Theme(
+          data: Theme.of(context).copyWith(
+            unselectedWidgetColor: Color(0xFF6C6C6C)),
+
+          child: Obx(() => RadioGroup<String>(
+            groupValue: _selectedReason,
+            onChanged: (val) => setState(() => _selectedReason = val),
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.reportReasons.length,
+              itemBuilder: (_, i) {
+                final reason = controller.reportReasons[i];
+                return RadioListTile<String>(
+                  value: reason,
+                  title: Text(reason, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+                  activeColor: AppColors.white,
+                  dense: true,
+                );
+              },
+            ),
+          )),
+        ),
+
         _buildButtons(
           onCancel: () => Navigator.pop(context),
           onNext: () {
@@ -106,19 +116,28 @@ class _ReportBottomSheetState extends State<NotificationReportSheet> {
         _buildHeader('How is it $_selectedReason',
             onBack: () => setState(() => _step = 0)),
         Divider(color:Get.isDarkMode? Color(0xFF3D3C3C):Color(0xFFEDEDED), height: 1),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: subs.length,
-          itemBuilder: (_, i) => RadioListTile<String>(
-            value: subs[i],
+
+        Theme(
+          data: Theme.of(context).copyWith(
+          unselectedWidgetColor: Color(0xFF6C6C6C)),
+
+          child: RadioGroup<String>(
             groupValue: _selectedSubReason,
             onChanged: (val) => setState(() => _selectedSubReason = val),
-            title: Text(subs[i], style: AppTextStyles.caption.copyWith(color: AppColors.white)),
-            activeColor:AppColors.white,
-            dense: true,
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: subs.length,
+              itemBuilder: (_, i) => RadioListTile<String>(
+                value: subs[i],
+                title: Text(subs[i], style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+                activeColor: AppColors.white,
+                dense: true,
+              ),
+            ),
           ),
         ),
+
         _buildButtons(
           onCancel: () => Navigator.pop(context),
           onNext: () {

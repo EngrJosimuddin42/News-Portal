@@ -60,16 +60,28 @@ class _ReportCommentSheetState extends State<ReportCommentSheet> {
 
         // Reasons
         Column(
-          children: commentController.reportReasons.map((reason) {
-            return RadioListTile<String>(
-              value: reason,
-              groupValue: _selectedReason,
-              onChanged: (val) => setState(() => _selectedReason = val),
-              title: Text(reason, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
-              activeColor:AppColors.white,
-              dense: true,
-            );
-          }).toList(),
+          children: [
+            Theme(
+              data: Theme.of(context).copyWith(
+                unselectedWidgetColor: Color(0xFF6C6C6C)),
+              child: RadioGroup<String>(
+                groupValue: _selectedReason,
+                onChanged: (val) {
+                  setState(() => _selectedReason = val);
+                },
+                child: Column(
+                  children: commentController.reportReasons.map((reason) {
+                    return RadioListTile<String>(
+                      value: reason,
+                      title: Text(reason, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+                      activeColor: AppColors.white,
+                      dense: true,
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
         ),
 
         // Submit button
