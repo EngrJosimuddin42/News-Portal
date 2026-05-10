@@ -16,7 +16,7 @@ import '../modules/search/search_page_view.dart';
 class HomeController extends GetxController {
 
   // Tab & Navigation State
-  final RxList<String> tabs = <String>['Reactions', 'For me', 'Local', 'Local Tv', 'Entertainment', 'Sports', 'Food', 'Health'].obs;
+  final RxList<String> tabs = <String>['Reactions', 'For you', 'Local', 'Local Tv', 'Entertainment', 'Sports', 'Food', 'Health'].obs;
   final RxInt selectedTabIndex = 1.obs;
   final RxInt selectedNavIndex = 0.obs;
 
