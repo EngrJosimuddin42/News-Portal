@@ -39,7 +39,7 @@ class _SettingsViewState extends State<SettingsView> {
       appBar: AppBar(
           backgroundColor: bgColor,
           elevation: 0,
-          title: Text('Settings', style: AppTextStyles.displaySmall.copyWith(
+          title: Text('settings'.tr, style: AppTextStyles.displaySmall.copyWith(
               color: titleColor)),
           centerTitle: true,
           leading: GestureDetector(
@@ -57,7 +57,7 @@ class _SettingsViewState extends State<SettingsView> {
                 // Manage Location
                 _settingsTile(
                     iconPath: AppAssets.locationIcon,
-                    title: 'Manage Location',
+                    title: 'manage_location'.tr,
                     onTap: () => Get.to(() => const ChooseLocationSheet(),
                       arguments: {'isFromSettings': true},
                     )),
@@ -65,20 +65,20 @@ class _SettingsViewState extends State<SettingsView> {
                 // Notification
                 _settingsTile(
                     iconPath: AppAssets.notificationIcon,
-                    title: 'Notification',
+                    title: 'notification'.tr,
                     onTap: () =>
                         Get.to(() => const NotificationSettingsView())),
 
                 // Privacy
                 _settingsTile(
                     iconPath: AppAssets.privacyIcon,
-                    title: 'Privacy',
+                    title: 'privacy'.tr,
                     onTap: () => Get.to(() => const PrivacyView())),
 
                 // Dark mode
                 _settingsTile(
                   iconPath: AppAssets.darkIcon,
-                  title: 'Dark mode',
+                  title: 'dark_mode'.tr,
                   showArrow: false,
                   trailing: SizedBox(height: 12.h,
                       child: Transform.scale(
@@ -101,13 +101,13 @@ class _SettingsViewState extends State<SettingsView> {
                 // Language
                 _settingsTile(
                     iconPath: AppAssets.languageIcon,
-                    title: 'Language',
+                    title: 'language'.tr,
                     onTap: () => SettingsController.to.showLanguagePicker()),
 
                 // Text size
                 _settingsTile(
                     iconPath: AppAssets.textIcon,
-                    title: 'Text size',
+                    title: 'text_size'.tr,
                     onTap: () => _showTextSizePicker()),
 
                 SizedBox(height: 8.h),
@@ -115,13 +115,13 @@ class _SettingsViewState extends State<SettingsView> {
                 // Help center
                 _settingsTile(
                     iconPath: AppAssets.helpIcon,
-                    title: 'Help center',
+                    title: 'help_center'.tr,
                     onTap: () => Get.to(() => const HelpSupportView())),
 
                 // Send feedback — bottom sheet
                 _settingsTile(
                     iconPath: AppAssets.feedbackIcon,
-                    title: 'Send feedback',
+                    title: 'send_feedback'.tr,
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
@@ -134,13 +134,13 @@ class _SettingsViewState extends State<SettingsView> {
                 // Discover app
                 _settingsTile(
                     iconPath: AppAssets.discoveryIcon,
-                    title: 'Discover app',
+                    title: 'discover_app'.tr,
                     onTap: () => Get.to(() => const DiscoverAppView())),
 
                 // About us
                 _settingsTile(
                     iconPath: AppAssets.aboutIcon,
-                    title: 'About us',
+                    title: 'about_us'.tr,
                     onTap: () => Get.to(() => const AboutView())),
 
               ],
@@ -160,7 +160,7 @@ class _SettingsViewState extends State<SettingsView> {
                       color: Color(0xFF7B83EB),
                       borderRadius: BorderRadius.circular(12.r)),
                   child: Center(
-                    child: Text('Log out', style: AppTextStyles.button,
+                    child: Text('log_out'.tr, style: AppTextStyles.button,
                         textAlign: TextAlign.center),
                   ),
                 ),
@@ -235,11 +235,11 @@ class _SettingsViewState extends State<SettingsView> {
                           onPressed: () => Get.back(),
                           icon: Icon( Icons.close, color:AppColors.white, size: 20.sp))),
 
-                  _buildTextSizeOption('Small'),
+                  _buildTextSizeOption('small'),
                    Divider(color: Get.isDarkMode? Color(0xFFDEDEE8) :Color(0xFFEDEDED), height: 1),
-                  _buildTextSizeOption('Medium'),
+                  _buildTextSizeOption('medium'),
                   Divider(color: Get.isDarkMode? Color(0xFFDEDEE8) :Color(0xFFEDEDED), height: 1),
-                  _buildTextSizeOption('Large'),
+                  _buildTextSizeOption('large'),
                   SizedBox(height: 10.h),
                 ],
               ),
@@ -247,11 +247,13 @@ class _SettingsViewState extends State<SettingsView> {
     );
   }
 
-  Widget _buildTextSizeOption(String size) {
+  Widget _buildTextSizeOption(String sizeKey) {
     return Obx(() {
-      bool isSelected = SettingsController.to.selectedTextSize.value == size;
+      String displayValue = sizeKey.capitalizeFirst!;
+      bool isSelected = SettingsController.to.selectedTextSize.value == displayValue;
+
       return ListTile(
-        title: Text(size, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+        title: Text(sizeKey.tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
         trailing: Container(
             padding: EdgeInsets.all(2.w),
             decoration: BoxDecoration(
@@ -261,7 +263,7 @@ class _SettingsViewState extends State<SettingsView> {
                 ? Icon(Icons.check, size: 14.sp, color: Color(0xFF257A5D))
                 : SizedBox(width: 14.w, height: 14.h)),
         onTap: () {
-          SettingsController.to.changeTextSize(size);
+          SettingsController.to.changeTextSize(displayValue);
           Get.back();
         },
       );
@@ -284,7 +286,7 @@ class _SettingsViewState extends State<SettingsView> {
                 children: [
                   SvgPicture.asset(AppAssets.logoutIcon, width: 40.w, height: 40.h),
                    SizedBox(height: 16.h),
-                  Text('Are you sure you want to log out?',
+                  Text('logout_confirmation'.tr,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.label.copyWith(
                           color: AppColors.white)),
@@ -303,7 +305,7 @@ class _SettingsViewState extends State<SettingsView> {
                                           color: const Color(0xFFE6E6E6),
                                           width: 1)),
                                   alignment: Alignment.center,
-                                  child: Text('Cancel', style: AppTextStyles.large.copyWith(
+                                  child: Text('cancel'.tr, style: AppTextStyles.large.copyWith(
                                       color: Color(0xFF6C6C6C)))))),
                        SizedBox(width: 12.w),
 
@@ -320,7 +322,7 @@ class _SettingsViewState extends State<SettingsView> {
                                     color: AppColors.linkColor,
                                     borderRadius: BorderRadius.circular(8.r)),
                                   alignment: Alignment.center,
-                                  child: Text('Log Out', style: AppTextStyles.large.copyWith( color: AppColors.background))))),
+                                  child: Text('log_out'.tr, style: AppTextStyles.large.copyWith( color: AppColors.background))))),
                     ],
                   ),
                 ],

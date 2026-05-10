@@ -7,6 +7,7 @@ import 'app/bindings/app_binding.dart';
 import 'app/controllers/me/settings/settings_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_colors.dart';
+import 'app/theme/app_translations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,9 +35,18 @@ class MyApp extends StatelessWidget {
               ? 1.2
               : 1.0;
 
+          final currentLocale = settingsController.selectedLanguage.value == 'English'
+              ? const Locale('en', 'US')
+              : const Locale('bn', 'BD');
+
           return GetMaterialApp(
             title: 'Newsbreak',
             debugShowCheckedModeBanner: false,
+
+            //language change
+            translations: AppTranslations(),
+            locale: currentLocale,
+            fallbackLocale: const Locale('en', 'US'),
 
             builder: (context, child) {
               return MediaQuery(
