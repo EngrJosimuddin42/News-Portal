@@ -99,7 +99,7 @@ class WhatWeDoView extends StatelessWidget {
            SizedBox(height: 8.h),
           Text(subtitle, style:AppTextStyles.overline.copyWith(color: Color(0xFF525C5E))),
            SizedBox(height: 24.h),
-          SizedBox(width: 190.w, height: 48.h,
+          SizedBox(width: 210.w, height: 48.h,
             child: ElevatedButton(
               onPressed: onTap,
               style: ElevatedButton.styleFrom(

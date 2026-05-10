@@ -8,7 +8,6 @@ import 'app/controllers/me/settings/settings_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_colors.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
@@ -28,41 +27,57 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return Obx(() => GetMaterialApp(
-          title: 'Newsbreak',
-          debugShowCheckedModeBanner: false,
+        return Obx(() {
+          final scale = SettingsController.to.selectedTextSize.value == 'Small'
+              ? 0.85
+              : SettingsController.to.selectedTextSize.value == 'Large'
+              ? 1.2
+              : 1.0;
 
-          // Light Theme
-          theme: ThemeData(
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: AppColors.scaffoldBg,
-            appBarTheme: AppBarTheme(
-              backgroundColor: AppColors.scaffoldBg,
-              elevation: 0,
-              iconTheme: IconThemeData(color: Colors.black),
+          return GetMaterialApp(
+            title: 'Newsbreak',
+            debugShowCheckedModeBanner: false,
+
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: TextScaler.linear(scale),
+                ),
+                child: child!,
+              );
+            },
+
+            // Light Theme
+            theme: ThemeData(
+              brightness: Brightness.light,
+              scaffoldBackgroundColor: AppColors.scaffoldBg,
+              appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.scaffoldBg,
+                elevation: 0,
+                iconTheme: const IconThemeData(color: Colors.black),
+              ),
             ),
-          ),
 
-         // Dark Theme
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            scaffoldBackgroundColor: AppColors.scaffoldBg,
-            appBarTheme: AppBarTheme(
-              backgroundColor: AppColors.scaffoldBg,
-              elevation: 0,
-              iconTheme: IconThemeData(color: Colors.white),
+            // Dark Theme
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              scaffoldBackgroundColor: AppColors.scaffoldBg,
+              appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.scaffoldBg,
+                elevation: 0,
+                iconTheme: const IconThemeData(color: Colors.white),
+              ),
             ),
-          ),
 
-          // them mode
-          themeMode: settingsController.isDarkMode.value
-              ? ThemeMode.dark
-              : ThemeMode.light,
+            themeMode: settingsController.isDarkMode.value
+                ? ThemeMode.dark
+                : ThemeMode.light,
 
-          initialBinding: AppBinding(),
-          initialRoute: AppPages.initial,
-          getPages: AppPages.routes,
-        ));
+            initialBinding: AppBinding(),
+            initialRoute: AppPages.initial,
+            getPages: AppPages.routes,
+          );
+        });
       },
     );
   }

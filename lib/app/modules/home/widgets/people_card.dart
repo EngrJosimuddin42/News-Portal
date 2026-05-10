@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:news_break/app/theme/app_colors.dart';
 import 'package:news_break/app/theme/app_text_styles.dart';
 
@@ -23,7 +22,7 @@ class PeopleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container( width: 150.w, height: 170.h,
+    return Container( width: 150.w, height: 175.h,
       padding: EdgeInsets.all(6.w),
       decoration: BoxDecoration(
         color:Get.isDarkMode?Color(0xFF0B0B0B):Colors.white,
@@ -48,7 +47,7 @@ class PeopleCard extends StatelessWidget {
           Text(name, style: AppTextStyles.button.copyWith(color:AppColors.white)),
           Text(subtitle, style:AppTextStyles.overline.copyWith(color:Color(0xFFA8A9AE), fontSize: 11.sp)),
           SizedBox(height: 12.h),
-          SizedBox( width: 125.w, height: 36.h,
+          SizedBox( width: 125.w, height: 33.h,
             child: OutlinedButton(
                 onPressed: onFollow,
                 style: OutlinedButton.styleFrom(

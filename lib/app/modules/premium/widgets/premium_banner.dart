@@ -13,7 +13,7 @@ class PremiumBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<PremiumController>();
-    return Container( height: 120.h, width: 335.w,
+    return Container( height: 145.h, width: 335.w,
           padding:  EdgeInsets.all(16.w),
           decoration: BoxDecoration(
             border: Border.all(color:Get.isDarkMode? Color(0xFF282828):Color(0xFFEDEDED)),
