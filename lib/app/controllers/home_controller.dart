@@ -172,12 +172,13 @@ class HomeController extends GetxController {
         builder: (_) => const NBotSheet());}
 
   void onChooseLocation() {
-    showModalBottomSheet(
-        context: Get.context!,
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        builder: (_) => const ChooseLocationSheet());}
-
+    Get.bottomSheet(
+      const ChooseLocationSheet(),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      settings: const RouteSettings(arguments: {'isFromSettings': false}),
+    );
+  }
 
   void hideNews(NewsModel news) {
     reactionsNews.remove(news);

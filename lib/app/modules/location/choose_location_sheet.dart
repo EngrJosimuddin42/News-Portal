@@ -33,8 +33,22 @@ class ChooseLocationSheet extends GetView<HomeController> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  //Back icon for settings screen
+                  Builder(builder: (context) {
+                    final bool isFromSettings = (Get.arguments as Map?)?['isFromSettings'] ?? false;
+
+                    if (isFromSettings) {
+                      return GestureDetector(
+                        onTap: () => Get.back(),
+                        child: Icon(Icons.arrow_back_ios, size: 20.sp, color: AppColors.textOnDark),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  }),
+                   // Done button
                   Obx(() => !controller.isSearching.value
                       ? GestureDetector(
                     onTap: () {

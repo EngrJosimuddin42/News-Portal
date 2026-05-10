@@ -58,7 +58,9 @@ class _SettingsViewState extends State<SettingsView> {
                 _settingsTile(
                     iconPath: AppAssets.locationIcon,
                     title: 'Manage Location',
-                    onTap: () => Get.to(() => const ChooseLocationSheet())),
+                    onTap: () => Get.to(() => const ChooseLocationSheet(),
+                      arguments: {'isFromSettings': true},
+                    )),
 
                 // Notification
                 _settingsTile(
