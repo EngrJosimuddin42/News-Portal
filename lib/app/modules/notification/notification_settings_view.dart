@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:news_break/app/theme/app_text_styles.dart';
+import '../../controllers/me/settings/settings_controller.dart';
 import '../../theme/app_colors.dart';
 import '../../controllers/notification/notification_controller.dart';
 
@@ -14,217 +12,245 @@ class NotificationSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NotificationController controller = Get.put(NotificationController());
-    return Scaffold(
-      backgroundColor:AppColors.scaffoldBg,
-      appBar: AppBar(
-          backgroundColor:AppColors.scaffoldBg,
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child:Icon(Icons.arrow_back_ios, color:AppColors.textOnDark, size: 20.sp)),
-        title:Text('Notification Settings',
-            style:AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
-        centerTitle: true),
+    return Obx(() {
+      final isDark = SettingsController.to.isDarkMode.value;
 
+      return Scaffold(
+        backgroundColor: AppColors.scaffoldBg,
+        appBar: AppBar(
+          backgroundColor: AppColors.scaffoldBg,
+          leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: AppColors.textOnDark, size: 20.sp),
+          ),
+          title: Text('notification_settings'.tr,
+              style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
+          centerTitle: true,
+        ),
         body: Obx(() => ListView(
-        children: [
+          children: [
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _switchTile('allow_notification'.tr, controller.allowNotification.value,
+                      (val) => controller.allowNotification.value = val,
+                  isDark: isDark, showPadding: false),
+            ),
 
-          // Allow Notification
-        _buildRoundedBox(
-        child:_switchTile('Allow Notification', controller.allowNotification.value,
-                (val) => controller.allowNotification.value = val,
-            showPadding: false )),
-
-          // Frequency slider
-      _buildRoundedBox(
-         child:  Padding(
-            padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 4.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 Text('Number of Notification',
-                     style: AppTextStyles.large.copyWith(color: AppColors.white)),
-                 SizedBox(height: 2.h),
-                Text('Control the frequency of notifications', style: AppTextStyles.overline),
-                Slider(
-                  value: controller.frequency.value,
-                  divisions: 2,
-                  onChanged: (val) => controller.frequency.value = val,
-                  activeColor: Colors.blue,
-                  inactiveColor: AppColors.textOnDark),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            _buildRoundedBox(
+              isDark: isDark,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 4.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Low Text
-                    Text('Low', style: controller.frequency.value == 0.0
-                          ? AppTextStyles.small.copyWith(color: AppColors.white)
-                          : AppTextStyles.overline),
-
-                    // Normal Text
-                    Text('Normal', style: controller.frequency.value == 0.5
-                          ? AppTextStyles.small.copyWith(color: AppColors.white)
-                          : AppTextStyles.overline),
-
-                    // High Text
-                    Text('High', style: controller.frequency.value == 1.0
-                          ? AppTextStyles.small.copyWith(color: AppColors.white)
-                          : AppTextStyles.overline),
+                    Text('number_of_notification'.tr,
+                        style: AppTextStyles.large.copyWith(color: AppColors.white)),
+                    SizedBox(height: 2.h),
+                    Text('control_frequency'.tr, style: AppTextStyles.overline),
+                    Slider(
+                      value: controller.frequency.value,
+                      divisions: 2,
+                      onChanged: (val) => controller.frequency.value = val,
+                      activeColor: Colors.blue,
+                      inactiveColor: AppColors.textOnDark,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('low'.tr, style: controller.frequency.value == 0.0
+                            ? AppTextStyles.small.copyWith(color: AppColors.white)
+                            : AppTextStyles.overline),
+                        Text('normal'.tr, style: controller.frequency.value == 0.5
+                            ? AppTextStyles.small.copyWith(color: AppColors.white)
+                            : AppTextStyles.overline),
+                        Text('high'.tr, style: controller.frequency.value == 1.0
+                            ? AppTextStyles.small.copyWith(color: AppColors.white)
+                            : AppTextStyles.overline),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-      ),
 
-     // Sound & Vibration
-      _buildRoundedBox(
-        child:
-          _switchTile('Sound & Vibration', controller.soundVibration.value,
-                (val) => controller.soundVibration.value = val,
-              showPadding: false)),
-
-          _sectionLabel('Notification Topics'),
-
-          _buildRoundedBox(
-           child:_labelWithToggle(
-            'Local News',
-            'Stay informed of local alerts, weather updates, news stories easily.',
-            controller.localNews.value,
-                (val) => controller.localNews.value = val,
-            showPadding: false)),
-
-           _buildRoundedBox(
-            child: _labelWithToggle(
-            'Breaking News',
-            'Get notified when a major story breaks out',
-            controller.breakingNews.value,
-                (val) => controller.breakingNews.value = val,
-            showPadding: false)),
-
-             _buildRoundedBox(
-             child: _labelWithToggle(
-            'Recommended Reactions',
-            'Reaction notifications from real people, based on your interests.',
-            controller.recommendedReactions.value,
-                (val) => controller.recommendedReactions.value = val,
-              showPadding: false)),
-
-           _buildRoundedBox(
-              child: _labelWithToggle(
-            'Followed Reactions',
-            'Reaction notifications from people you follow.',
-            controller.followedReactions.value,
-                (val) => controller.followedReactions.value = val,
-              showPadding: false)),
-
-             _buildRoundedBox(
-              child: _labelWithToggle(
-            'For You',
-            'Stories based on your interests and topics you follow.',
-            controller.forYou.value,
-                (val) => controller.forYou.value = val,
-              showPadding: false)),
-
-         _buildRoundedBox(
-          child:_labelWithToggle(
-            'Local Deals and Events',
-            'Promotions and upcoming events.',
-            controller.localDeals.value,
-                (val) => controller.localDeals.value = val,
-              showPadding: false)),
-
-          _sectionLabel('Message'),
-
-      _buildRoundedBox(
-        child: _labelWithToggle(
-            'Comment Replies',
-            'Get notified when someone replied to comments you left.',
-            controller.commentReplies.value,
-                (val) => controller.commentReplies.value = val,
-            showPadding: false)),
-
-          _sectionLabel('Other Settings'),
-
-          _buildRoundedBox(
-              child: _labelWithToggle(
-            'Do Not Disturb',
-            'Notifications will be silenced during the selected time.',
-            controller.doNotDisturb.value,
-                (val) => controller.doNotDisturb.value = val,
-              showPadding: false)),
-
-          _buildRoundedBox(
-            child: _labelWithToggle(
-              'Lock Screen Notifications',
-              'Enable to display latest news stories on lock screen',
-              controller.isLockScreenEnabled.value,
-                  (val) => controller.isLockScreenEnabled.value = val,
-              showPadding: false,
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _switchTile('sound_vibration'.tr, controller.soundVibration.value,
+                      (val) => controller.soundVibration.value = val,
+                  isDark: isDark, showPadding: false),
             ),
-          ),
 
-        // Enable/Disable Button Section
-           Padding(
-               padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 10.w),
-            child: Obx(() => Align(
+            _sectionLabel('notification_topics'.tr),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'local_news'.tr, 'local_news_desc'.tr,
+                controller.localNews.value, (val) => controller.localNews.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'breaking_news'.tr, 'breaking_news_desc'.tr,
+                controller.breakingNews.value, (val) => controller.breakingNews.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'recommended_reactions'.tr, 'recommended_reactions_desc'.tr,
+                controller.recommendedReactions.value,
+                    (val) => controller.recommendedReactions.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'followed_reactions'.tr, 'followed_reactions_desc'.tr,
+                controller.followedReactions.value,
+                    (val) => controller.followedReactions.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'for_you'.tr, 'for_you_notif_desc'.tr,
+                controller.forYou.value, (val) => controller.forYou.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'local_deals'.tr, 'local_deals_desc'.tr,
+                controller.localDeals.value, (val) => controller.localDeals.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _sectionLabel('message'.tr),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'comment_replies'.tr, 'comment_replies_desc'.tr,
+                controller.commentReplies.value,
+                    (val) => controller.commentReplies.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _sectionLabel('other_settings'.tr),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'do_not_disturb'.tr, 'do_not_disturb_desc'.tr,
+                controller.doNotDisturb.value, (val) => controller.doNotDisturb.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            _buildRoundedBox(
+              isDark: isDark,
+              child: _labelWithToggle(
+                'lock_screen'.tr, 'lock_screen_desc'.tr,
+                controller.isLockScreenEnabled.value,
+                    (val) => controller.isLockScreenEnabled.value = val,
+                isDark: isDark, showPadding: false,
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 10.w),
+              child: Obx(() => Align(
                 alignment: Alignment.centerLeft,
-                child:OutlinedButton(
-                  onPressed: () {
-                    controller.toggleLockScreen();
-                  },
+                child: OutlinedButton(
+                  onPressed: () => controller.toggleLockScreen(),
                   style: OutlinedButton.styleFrom(
-                      minimumSize: Size(100.w, 50.h),
-                      side: BorderSide(
-                          color: controller.isLockScreenEnabled.value
-                              ? AppColors.textGreen
-                              : Colors.red),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r)),
-                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h)),
-                  child: Text( controller.isLockScreenEnabled.value ? 'Enable' : 'Disable',
-                    style: AppTextStyles.large.copyWith(color: controller.isLockScreenEnabled.value
-                            ? AppColors.textGreen
-                            : Colors.red)))))),
-             ],
+                    minimumSize: Size(100.w, 50.h),
+                    side: BorderSide(
+                      color: controller.isLockScreenEnabled.value
+                          ? AppColors.textGreen : Colors.red,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r)),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                  ),
+                  child: Text(
+                    controller.isLockScreenEnabled.value ? 'enable'.tr : 'disable'.tr,
+                    style: AppTextStyles.large.copyWith(
+                      color: controller.isLockScreenEnabled.value
+                          ? AppColors.textGreen : Colors.red,
+                    ),
+                  ),
+                ),
+              )),
             ),
-          ),
-    );
+          ],
+        )),
+      );
+    });
   }
 
-  Widget _buildRoundedBox({required Widget child}) {
+  Widget _buildRoundedBox({required Widget child, required bool isDark}) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: AppColors.scaffoldBg,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color:Get.isDarkMode?Color(0XFF26272D):Color(0xFFEDEDED), width: 1)),
+        border: Border.all(
+          color: isDark ? const Color(0xFF26272D) : const Color(0xFFEDEDED),
+          width: 1,
+        ),
+      ),
       child: child,
     );
   }
 
-  Widget _switchTile(String label, bool value, ValueChanged<bool> onChanged, {bool showLabel = true, bool showPadding = true}) {
+  Widget _switchTile(String label, bool value, ValueChanged<bool> onChanged,
+      {required bool isDark, bool showLabel = true, bool showPadding = true}) {
     Widget content = Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-        if (showLabel) Text(label, style: AppTextStyles.large.copyWith(color: AppColors.white)),
-        SizedBox( height: 24,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        if (showLabel)
+          Text(label, style: AppTextStyles.large.copyWith(color: AppColors.white)),
+        SizedBox(
+          height: 24,
           child: Transform.scale(
             scale: 0.7,
             child: Switch(
               value: value,
               onChanged: onChanged,
               activeThumbColor: AppColors.textGreen,
-            thumbColor:WidgetStatePropertyAll(Get.isDarkMode?Colors.black:Colors.white)))),
-        ],
+              thumbColor: WidgetStatePropertyAll(
+                  isDark ? Colors.black : Colors.white),
+            ),
+          ),
+        ),
+      ],
     );
-
-    return showPadding ?
-    Padding(padding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h), child: content) : content;
+    return showPadding
+        ? Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+        child: content)
+        : content;
   }
 
-
-  Widget _labelWithToggle(String title, String subtitle, bool value, ValueChanged<bool> onChanged,
-      {bool showPadding = true}) {
+  Widget _labelWithToggle(String title, String subtitle, bool value,
+      ValueChanged<bool> onChanged,
+      {required bool isDark, bool showPadding = true}) {
     Widget content = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -233,29 +259,36 @@ class NotificationSettingsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: AppTextStyles.large.copyWith(color: AppColors.white)),
-               SizedBox(height: 4.h),
-              Text(subtitle, style: AppTextStyles.overline.copyWith(color: Colors.grey)),
+              SizedBox(height: 4.h),
+              Text(subtitle,
+                  style: AppTextStyles.overline.copyWith(color: Colors.grey)),
             ],
           ),
         ),
-          Transform.scale(
-            scale: 0.7,
-            child: Switch(
-              value: value,
-              onChanged: onChanged,
-              activeThumbColor: AppColors.textGreen,
-              thumbColor:WidgetStatePropertyAll(Get.isDarkMode?Colors.black:Colors.white))),
+        Transform.scale(
+          scale: 0.7,
+          child: Switch(
+            value: value,
+            onChanged: onChanged,
+            activeThumbColor: AppColors.textGreen,
+            thumbColor: WidgetStatePropertyAll(
+                isDark ? Colors.black : Colors.white),
+          ),
+        ),
       ],
     );
-
-    return showPadding ?
-    Padding(padding:EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-        child: content) : content;
+    return showPadding
+        ? Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        child: content)
+        : content;
   }
 
   Widget _sectionLabel(String label) {
-    return Padding( padding:  EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 4.h),
-      child: Text(label, style: AppTextStyles.button.copyWith(color:AppColors.textOnDark)),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 4.h),
+      child: Text(label,
+          style: AppTextStyles.button.copyWith(color: AppColors.textOnDark)),
     );
   }
 }
