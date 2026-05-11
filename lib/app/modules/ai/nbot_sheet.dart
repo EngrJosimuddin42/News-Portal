@@ -32,7 +32,7 @@ class NBotSheet extends GetView<NBotController> {
                 children: [
                   Image.asset('assets/images/nbot.png', width: 80.w, height: 80.h),
                    SizedBox(height: 16.h),
-                  Text('NBot: Always Gets You', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
+                  Text('nbot_title'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
                   SizedBox(height:32.h),
                   Obx(() => ListView.builder(
                     shrinkWrap: true,
@@ -61,7 +61,7 @@ class NBotSheet extends GetView<NBotController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('People also ask/request/report', style: AppTextStyles.overline),
+                        Text('people_also_ask'.tr, style: AppTextStyles.overline),
                          SizedBox(height: 16.h),
                         Obx(() => Wrap( spacing: 14,  runSpacing: 14,
                           children: controller.suggestions.map((s) => GestureDetector(
@@ -100,7 +100,7 @@ class NBotSheet extends GetView<NBotController> {
                       controller: controller.textController,
                       style: AppTextStyles.overline,
                       decoration: InputDecoration(
-                        hintText: 'Ask/Request/Report anything',
+                        hintText:  'ask_request_report'.tr,
                         hintStyle: AppTextStyles.overline,
                         border: InputBorder.none))),
                   Obx(() => GestureDetector(

@@ -12,11 +12,12 @@ import '../modules/ai/nbot_sheet.dart';
 import '../modules/location/choose_location_sheet.dart';
 import '../modules/location/manage_location_view.dart';
 import '../modules/search/search_page_view.dart';
+import 'me/settings/settings_controller.dart';
 
 class HomeController extends GetxController {
 
   // Tab & Navigation State
-  final RxList<String> tabs = <String>['Reactions', 'For you', 'Local', 'Local Tv', 'Entertainment', 'Sports', 'Food', 'Health'].obs;
+  final RxList<String> tabs = <String>['reactions', 'for_you', 'local', 'local_tv', 'entertainment', 'sports', 'food', 'health'].obs;
   final RxInt selectedTabIndex = 1.obs;
   final RxInt selectedNavIndex = 0.obs;
 
@@ -40,7 +41,7 @@ class HomeController extends GetxController {
   final tempLocation = Rxn<Map<String, String>>();
   var isLocationLoading = false.obs;
   var currentAddress = "".obs;
-  String get locationTitle => selectedLocation.value?['city'] ?? 'Choose Your Location';
+  String get locationTitle => selectedLocation.value?['city'] ?? 'choose_location'.tr;
 
 // Search & UI State
   final TextEditingController searchController = TextEditingController();
@@ -65,7 +66,7 @@ class HomeController extends GetxController {
 
     final int monthIndex = currentDate.value.month - 1;
     final int day = currentDate.value.day;
-    final bool isBengali = Get.locale?.languageCode == 'bn';
+    final bool isBengali = SettingsController.to.selectedLanguage.value == 'Bangla';
 
     if (isBengali) {
       final String bengaliDay = _toBengaliNumber(day.toString());

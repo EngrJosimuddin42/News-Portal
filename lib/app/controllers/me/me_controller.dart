@@ -23,15 +23,15 @@ class MeController extends GetxController {
 
   var selectedChipIndex = 0.obs;
   var selectedContentChipIndex = 0.obs;
-  var currentLabel = 'Last 7 days'.obs;
+  var currentLabel = 'last_7_days'.obs;
   var currentDateRange = 'Mar 25 - Mar 31'.obs;
   var selectedDashboardTab = 0.obs;
 
   final selectedTab = 0.obs;
   final hasHistory = true.obs;
   final isCreator = false.obs;
-  final loggedInTabs = ['Content', 'Reactions', 'Saved', 'History'];
-  final loggedOutTabs = ['Saved', 'History'];
+  final loggedInTabs = ['content', 'reactions', 'saved', 'history'];
+  final loggedOutTabs = ['saved', 'history'];
   final ReelsController _reelsController = Get.find<ReelsController>();
 
 
@@ -115,7 +115,7 @@ class MeController extends GetxController {
     if (isCreator.value) {
       return loggedInTabs;
     } else {
-      return loggedInTabs.where((tab) => tab != 'Content').toList();
+      return loggedInTabs.where((tab) => tab != 'content').toList();
     }
   }
 
@@ -129,19 +129,19 @@ class MeController extends GetxController {
       builder: (_) =>
           AlertDialog(
             backgroundColor:AppColors.search,
-            title: Text('Clear history?', style: AppTextStyles.caption.copyWith(color: AppColors.white)),
-            content: Text( 'Are you sure you want to clear your browsing history? This action cannot be undone.',
+            title: Text('clear_history'.tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+            content: Text('clear_history_desc'.tr,
                 style: AppTextStyles.caption.copyWith(color: AppColors.white)),
             actions: [
               TextButton(
                 onPressed: () => Get.back(),
-                child: Text('Cancel', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white))),
+                child: Text('cancel'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white))),
               TextButton(
                 onPressed: () {
                   clearFullHistory();
                   Get.back();
                 },
-                child: Text('Clear', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
+                child: Text('clear'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
               ),
             ],
           ),
@@ -149,19 +149,19 @@ class MeController extends GetxController {
   }
 
   final List<Map<String, String>> dateRanges = [
-    {'label': 'Last 7 days', 'sub': 'Mar 25 - Mar 31'},
-    {'label': 'Last 28 days', 'sub': 'Mar 4 - Mar 31'},
-    {'label': 'Last 60 days', 'sub': 'Jan 31 - Mar 31'},
+    {'label': 'last_7_days', 'sub': 'Mar 25 - Mar 31'},
+    {'label': 'last_28_days', 'sub': 'Mar 4 - Mar 31'},
+    {'label': 'last_60_days', 'sub': 'Jan 31 - Mar 31'},
   ];
 
   var engagementStats = <Map<String, dynamic>>[
-    {'label': 'Impressions', 'value': '12.5K', 'percent': '2.4%', 'isSelected': true},
-    {'label': 'Likes', 'value': '850', 'percent': '1.2%', 'isSelected': false},
+    {'label': 'impressions', 'value': '12.5K', 'percent': '2.4%', 'isSelected': true},
+    {'label': 'likes', 'value': '850', 'percent': '1.2%', 'isSelected': false},
   ].obs;
 
   var followerStats = <Map<String, dynamic>>[
-    {'label': 'Total Followers', 'value': '1,250', 'percent': '5.0%', 'isSelected': true},
-    {'label': 'Followers', 'value': '45', 'percent': '0.5%', 'isSelected': false},
+    {'label': 'total_followers', 'value': '1,250', 'percent': '5.0%', 'isSelected': true},
+    {'label': 'new_followers', 'value': '45', 'percent': '0.5%', 'isSelected': false},
   ].obs;
 
   var historyItems = <HistoryModel>[

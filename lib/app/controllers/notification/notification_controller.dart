@@ -22,8 +22,7 @@ class NotificationController extends GetxController with GetSingleTickerProvider
 
   final RxList<String> reportReasons = <String>[].obs;
   final RxMap<String, List<String>> reportSubReasons = <String, List<String>>{}.obs;
-  static const List<String> tabs = ['News', 'Likes', 'Replies', 'Follows', 'Others'];
-
+  static List<String> get tabs => ['news'.tr, 'likes'.tr, 'replies'.tr, 'follows'.tr, 'others'.tr];
 
   @override
   void onInit() {

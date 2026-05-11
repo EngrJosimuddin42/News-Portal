@@ -5,6 +5,7 @@ import 'package:news_break/app/theme/app_colors.dart';
 import 'package:news_break/app/theme/app_text_styles.dart';
 import 'package:news_break/app/modules/premium/premium_screen.dart';
 import 'package:news_break/app/bindings/premium_binding.dart';
+import '../../../controllers/me/settings/settings_controller.dart';
 import '../../../controllers/premium_controller.dart';
 
 class PremiumBanner extends StatelessWidget {
@@ -13,43 +14,67 @@ class PremiumBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<PremiumController>();
-    return Container( height: 145.h, width: 335.w,
-          padding:  EdgeInsets.all(16.w),
-          decoration: BoxDecoration(
-            border: Border.all(color:Get.isDarkMode? Color(0xFF282828):Color(0xFFEDEDED)),
-            borderRadius: BorderRadius.circular(16.r)),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(controller.bannerTitle.value, style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white)),
-                    SizedBox(height: 4.h),
-                    Text(controller.bannerSubtitle.value, style: AppTextStyles.overline.copyWith(color:AppColors.info)),
-                  ],
+
+    return Obx(() {
+      final isDark = SettingsController.to.isDarkMode.value;
+
+      SettingsController.to.selectedLanguage.value;
+
+      return Container(
+        height: 150.h,
+        width: 335.w,
+        padding: EdgeInsets.all(16.w),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isDark ? const Color(0xFF282828) : const Color(0xFFEDEDED),
+          ),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.bannerTitle,
+                    style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    controller.bannerSubtitle,
+                    style: AppTextStyles.overline.copyWith(color: AppColors.info),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: AppColors.customGradient,
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: ElevatedButton(
+                onPressed: () => Get.to(
+                      () => const PremiumScreen(),
+                  binding: PremiumBinding(),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+                ),
+                child: Text(
+                  controller.bannerButtonText,
+                  style: AppTextStyles.textSmall.copyWith(color: Colors.white),
                 ),
               ),
-
-              Container(
-                decoration: BoxDecoration(
-                  gradient: AppColors.customGradient,
-                  borderRadius: BorderRadius.circular(8.r)),
-                child: ElevatedButton(
-                  onPressed: () => Get.to(
-                        () => const PremiumScreen(),
-                    binding: PremiumBinding()),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r)),
-                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h)),
-                  child: Text(
-                    controller.bannerButtonText.value,
-                    style: AppTextStyles.textSmall.copyWith(color: Colors.white))))
-            ],
-          ),
-        );
-      }
+            ),
+          ],
+        ),
+      );
+    });
   }
+}

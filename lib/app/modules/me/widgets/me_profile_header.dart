@@ -99,7 +99,7 @@ class MeProfileHeader extends StatelessWidget {
                         .find<HomeController>()
                         .locationTitle
                         : (AuthController.to.user.value?.location ??
-                        'Choose Your Location'),
+                        'choose_location'.tr),
                     style: AppTextStyles.overline,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -116,13 +116,13 @@ class MeProfileHeader extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _statItem('0', 'Subscribed'),
+                _statItem('0', 'subscribed'),
                 _buildVerticalDivider(),
                 _statItem(
-                    socialCtrl.followersCount.value.toString(), 'Followers'),
+                    socialCtrl.followersCount.value.toString(), 'followers'),
                 _buildVerticalDivider(),
                 _statItem(
-                    socialCtrl.followingCount.value.toString(), 'Following'),
+                    socialCtrl.followingCount.value.toString(), 'following'),
               ],
             );
           }),
@@ -137,7 +137,7 @@ class MeProfileHeader extends StatelessWidget {
       children: [
         Text(count, style:AppTextStyles.bodyMedium),
          SizedBox(height: 2.h),
-        Text(label, style:AppTextStyles.overline.copyWith(color: Color(0xFFA7A7A7))),
+        Text(label.tr, style:AppTextStyles.overline.copyWith(color: Color(0xFFA7A7A7))),
       ],
     );
   }

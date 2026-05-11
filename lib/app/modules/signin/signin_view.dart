@@ -32,7 +32,7 @@ class SignInView extends GetView<SignInController> {
               Align( alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: controller.onSkip,
-                  child: Text('Skip', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)))),
+                  child: Text('skip'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)))),
               const Spacer(),
              SvgPicture.asset(AppAssets.logoIcon,width: 80.w, height: 80.h,
                  colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn)),
@@ -40,7 +40,7 @@ class SignInView extends GetView<SignInController> {
               SvgPicture.asset(AppAssets.titleIcon,width: 100.w, height: 30.h,
                   colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn)),
                SizedBox(height: 12.h),
-              Text("The Nation's Leading Local News App",style: AppTextStyles.bodyLarge.copyWith(
+              Text('app_tagline'.tr,style: AppTextStyles.bodyLarge.copyWith(
                   color: Get.isDarkMode?Color(0xFFC4C4C4):Color(0xFF242424))),
                SizedBox(height: 52.h),
               _buttons(),
@@ -79,11 +79,11 @@ class SignInView extends GetView<SignInController> {
            SizedBox(height: 12.h),
 
           // Title
-          Text('Create an account', style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
+          Text('create_account'.tr, style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
            SizedBox(height: 12.h),
 
           // Subtitle
-          Text('Log in or sign up to comment', style: AppTextStyles.overline),
+          Text('login_to_comment'.tr, style: AppTextStyles.overline),
           SizedBox(height: 48.h),
 
           _buttons(),
@@ -99,13 +99,13 @@ class SignInView extends GetView<SignInController> {
     return Column(
       children: [
         Obx(() => _SocialButton(
-          label: 'Continue with Facebook',
+          label: 'continue_facebook',
           onTap: controller.continueWithFacebook,
           iconWidget: SvgPicture.asset(AppAssets.facebookIcon, width: 22.w, height: 22.h),
           isLoading: controller.isLoading.value)),
          SizedBox(height: 14.h),
         Obx(() => _SocialButton(
-          label: 'Continue with Google',
+          label: 'continue_google',
           onTap: controller.continueWithGoogle,
           iconWidget: SvgPicture.asset(AppAssets.googleIcon, width: 22.w, height: 22.h),
             isLoading: controller.isLoading.value)),
@@ -117,7 +117,7 @@ class SignInView extends GetView<SignInController> {
               ? Padding(
             padding:  EdgeInsets.only(top: 14.h),
             child: _SocialButton(
-              label: 'Continue with Email',
+              label: 'continue_email',
               onTap: controller.continueWithEmail,
               iconWidget: SvgPicture.asset(AppAssets.emailIcon,width: 22.w, height: 22.h),
               isLoading: controller.isLoading.value))
@@ -143,14 +143,15 @@ class SignInView extends GetView<SignInController> {
       textAlign: TextAlign.center,
       text: TextSpan(style: AppTextStyles.labelMedium,
         children: [
-          const TextSpan(text: 'By using NewsBreak, you agree to our '),
-          TextSpan( text: 'Terms of use',  style: TextStyle(color: AppColors.term),
+          TextSpan(text: 'terms_agree'.tr),
+          TextSpan(  text: 'terms_of_use'.tr,  style: TextStyle(color: AppColors.term),
             recognizer: TapGestureRecognizer()
               ..onTap = controller.onTermsTap),
-          const TextSpan(text: ' and\n'),
-          TextSpan(text: 'Privacy Policy', style: const TextStyle(color: AppColors.term),
+          TextSpan(text: 'and'.tr),
+          TextSpan(text: 'privacy_policy'.tr, style: const TextStyle(color: AppColors.term),
             recognizer: TapGestureRecognizer()
               ..onTap = controller.onPrivacyTap),
+          TextSpan(text: 'terms_end'.tr),
         ],
       ),
     );
@@ -190,7 +191,7 @@ class _SocialButton extends StatelessWidget {
           children: [
             iconWidget,
              SizedBox(width: 10.h),
-            Text(label, style: AppTextStyles.caption.copyWith(color: Get.isDarkMode?Colors.white:Color(0xFF242424))),
+            Text(label.tr, style: AppTextStyles.caption.copyWith(color: Get.isDarkMode?Colors.white:Color(0xFF242424))),
           ],
         ),
       ),

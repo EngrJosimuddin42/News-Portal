@@ -54,7 +54,7 @@ class NewsBottomSheets {
                         _topActionCard(
                           context: context,
                           icon: Icons.bookmark_border,
-                          label: 'Save',
+                          label: 'save',
                           onTap: () {
                             Get.back();
                             if (controller.isLoggedIn) {
@@ -69,7 +69,7 @@ class NewsBottomSheets {
                         _topActionCard(
                           context: context,
                           assetPath: AppAssets.shareIcon,
-                          label: 'Share',
+                          label: 'share',
                           onTap: () {
                             Get.back();
                             if (!Get.isRegistered<ReelsController>()) {
@@ -99,7 +99,7 @@ class NewsBottomSheets {
                         _topActionCard(
                           context: context,
                           assetPath: AppAssets.featherIcon,
-                          label: 'Short Post',
+                          label: 'short_post',
                           onTap: () {
                             Get.back();
                             if (Get.isRegistered<CreatePostController>()) {
@@ -157,7 +157,7 @@ class NewsBottomSheets {
                       ),
                       child: _optionTile(
                         isAiIcon: true,
-                        label: 'Ask/request/report anything',
+                        label: 'ask_request_report',
                         labelColor: AppColors.textOnDark,
                         onTap: () {
                           Get.back();
@@ -212,11 +212,10 @@ class NewsBottomSheets {
                 assetPath,
                 width: 28.w,
                 height: 28.h,
-                colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
-              )
+                colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn))
                   : Icon(icon, color: AppColors.white, size: 28.sp),
               SizedBox(height: 8.h),
-              Text(label, style: AppTextStyles.labelMedium.copyWith(color: AppColors.white)),
+              Text(label.tr, style: AppTextStyles.labelMedium.copyWith(color: AppColors.white)),
             ],
           ),
         ),
@@ -252,7 +251,7 @@ class NewsBottomSheets {
         colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
       )
           : (icon != null ? Icon(icon, color: iconColor, size: 20.sp) : null)),
-      title: Text(label, style: AppTextStyles.caption.copyWith(color: labelColor)),
+      title: Text(label.tr, style: AppTextStyles.caption.copyWith(color: labelColor)),
       onTap: onTap,
       dense: true,
     );

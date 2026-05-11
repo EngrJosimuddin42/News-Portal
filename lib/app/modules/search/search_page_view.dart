@@ -24,7 +24,7 @@ class SearchPageView extends GetView<SearchPageController> {
 
             Padding(
               padding: EdgeInsets.fromLTRB(16.w, 4.h, 16.w, 12.h),
-              child: Text('Trending', style: AppTextStyles.button.copyWith(color: AppColors.white))),
+              child: Text('trending'.tr, style: AppTextStyles.button.copyWith(color: AppColors.white))),
 
             Expanded(
               child: SingleChildScrollView(
@@ -88,7 +88,7 @@ class SearchPageView extends GetView<SearchPageController> {
                 textAlignVertical: TextAlignVertical.center,
                 style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
                 decoration: InputDecoration(
-                  hintText: 'Search',
+                  hintText: 'search'.tr,
                   hintStyle: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
                   prefixIcon: Icon(Icons.search, color: AppColors.textOnDark, size: 20.sp),
                   suffixIcon: Obx(() => controller.query.isNotEmpty
@@ -113,8 +113,8 @@ class SearchPageView extends GetView<SearchPageController> {
         controller: controller.filterController,
         style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
         decoration:  InputDecoration(
-          hintText: 'Find an item',
-          hintStyle: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
+          hintText: 'find_an_item'.tr,
+            hintStyle: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
           contentPadding: EdgeInsets.fromLTRB(16.w, 14.h, 16.w, 14.h),
           border: InputBorder.none)),
     );

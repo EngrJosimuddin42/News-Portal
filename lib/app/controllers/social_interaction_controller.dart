@@ -10,6 +10,7 @@ import '../routes/app_pages.dart';
 import '../widgets/app_snackbar.dart';
 import 'auth/auth_controller.dart';
 import 'auth/auth_helper.dart';
+import 'me/settings/settings_controller.dart';
 import 'reels/comment_controller.dart';
 
 class SocialInteractionController extends GetxController {
@@ -120,9 +121,8 @@ class SocialInteractionController extends GetxController {
     if (isLiked(news, type: type)) {
       return formatCount(currentLikes + 1);
     }
-    return news.likes;
+    return formatCount(currentLikes);
   }
-
 
   //  DISLIKE
   void toggleDislike(int id, {String type = 'news'}) {
@@ -281,15 +281,33 @@ class SocialInteractionController extends GetxController {
     return int.tryParse(count) ?? 0;
   }
 
+
+  String _toBengaliNumber(String input) {
+    const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const bengali = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    for (int i = 0; i < 10; i++) {
+      input = input.replaceAll(english[i], bengali[i]);
+    }
+    return input;
+  }
+
+
   String formatCount(int count) {
+    String result;
     if (count >= 1000000) {
       double formatted = count / 1000000;
-      return '${formatted.toStringAsFixed(formatted.truncateToDouble() == formatted ? 0 : 1)}m';
+      result = '${formatted.toStringAsFixed(formatted.truncateToDouble() == formatted ? 0 : 1)}m';
     } else if (count >= 1000) {
       double formatted = count / 1000;
-      return '${formatted.toStringAsFixed(formatted.truncateToDouble() == formatted ? 0 : 1)}k';
+      result = '${formatted.toStringAsFixed(formatted.truncateToDouble() == formatted ? 0 : 1)}k';
+    } else {
+      result = count.toString();
     }
-    return count.toString();
+
+    if (Get.find<SettingsController>().selectedLanguage.value == 'Bangla') {
+      return _toBengaliNumber(result);
+    }
+    return result;
   }
 
 

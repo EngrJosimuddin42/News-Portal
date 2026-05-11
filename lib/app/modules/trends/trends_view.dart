@@ -84,7 +84,7 @@ class TrendsView extends GetView<TrendsController> {
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(
-                          topic.isEmpty ? 'Search' : topic,
+                          topic.isEmpty ? 'search'.tr : topic,
                           style: AppTextStyles.caption.copyWith(
                               color: topic.isEmpty ? Colors.grey :AppColors.white),
                           overflow: TextOverflow.ellipsis,

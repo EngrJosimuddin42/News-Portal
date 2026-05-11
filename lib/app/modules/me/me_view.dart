@@ -46,11 +46,10 @@ class MeBody extends GetView<MeController> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.r)),
                             padding: EdgeInsets.symmetric(vertical: 14.h)),
-                        child: Text('Log in or sign up',
+                        child: Text('login_signup'.tr,
                             style: AppTextStyles.bodySmall))),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 16.h),
-                    child: Text(
-                        'Keep your preferences, articles, and topics saved in your NewsBreak account.',
+                    child: Text('login_desc'.tr,
                         style: AppTextStyles.labelSmall.copyWith(
                             color: AppColors.info))),
 

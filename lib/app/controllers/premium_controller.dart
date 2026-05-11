@@ -12,11 +12,12 @@ class PremiumController extends GetxController {
   var monthlyPrice = "\$19.99".obs;
   var freeTrialText = "Start 7day Free Trial".obs;
   var disclaimerText = "Lorem ipsum dolor sit amet consectetur. Sapien netus sed turpis euismod tortor. Consequat arcu commodo non habitant sit cras aliquam elementum commodo. Proin viverra pharetra etiam nibh nunc.".obs;
-  final List<String> paymentMethods = ['Bkash', 'Nagad', 'Rocket'].obs;
+  final List<String> paymentMethods = ['bkash', 'nagad', 'rocket'];
 
-  var bannerTitle = "Try Premium for FREE".obs;
-  var bannerSubtitle = "Ad-free reading, boosted \ncomments,smarter \nrecommendations and more.".obs;
-  var bannerButtonText = "Upgrade".obs;
+  String get bannerTitle => 'banner_title'.tr;
+  String get bannerSubtitle => 'banner_subtitle'.tr;
+  String get bannerButtonText => 'upgrade'.tr;
+
 
   String get userInitial => Get.find<AuthController>().userInitial;
 

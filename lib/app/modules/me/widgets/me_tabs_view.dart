@@ -24,7 +24,7 @@ class MeTabsView extends GetView<MeController> {
       children: [
 
         Obx(() {
-          final currentTabs = isLoggedIn ? controller.tabs : ['Saved', 'History'];
+          final currentTabs = isLoggedIn ? controller.tabs : ['saved', 'history'];
           return _buildTabBar(context, currentTabs);
         }),
 
@@ -41,14 +41,14 @@ class MeTabsView extends GetView<MeController> {
     final tabName = tab < tabs.length ? tabs[tab] : '';
 
     switch (tabName) {
-      case 'Content':
+      case 'content':
         return Column(
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 12.h),
               child: Row(
                 children: [
-                  _chip('Posts', true, () {}),
+                  _chip('posts', true, () {}),
                 ],
               ),
             ),
@@ -61,9 +61,9 @@ class MeTabsView extends GetView<MeController> {
                 return Column(
                   children: [
                     SizedBox(height: 60.h),
-                    Text('No Content', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
+                    Text('no_content'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
                     SizedBox(height: 8.h),
-                    Text("You haven't published any posts yet.", style: AppTextStyles.overline),
+                    Text('no_posts_yet'.tr, style: AppTextStyles.overline),
                     SizedBox(height: 40.h),
                   ],
                 );
@@ -115,17 +115,17 @@ class MeTabsView extends GetView<MeController> {
           ],
         );
 
-      case 'Reactions':
+      case 'reactions':
         return ReelsReactions.ReactionsTab(
           user: AuthController.to.user.value,
           controller: Get.find<ReelsController>(),
           isFullActivity: true, // news + trends
         );
 
-      case 'Saved':
+      case 'saved':
         return _buildSharedSavedView();
 
-      case 'History':
+      case 'history':
         return _buildSharedHistoryView(context);
       default:
         return const SizedBox();
@@ -155,7 +155,7 @@ class MeTabsView extends GetView<MeController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(tabs[i], style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+                      Text(tabs[i].tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
                       SizedBox(height: 4.h),
                       if (selected)
                         Container(height: 2.h, width: 50.h, color: AppColors.white),
@@ -180,7 +180,7 @@ class MeTabsView extends GetView<MeController> {
           decoration: BoxDecoration(
               color:AppColors.white,
               borderRadius: BorderRadius.circular(60.r)),
-          child: Text(label,style: AppTextStyles.labelSmall.copyWith( color:AppColors.background))),
+          child: Text(label.tr,style: AppTextStyles.labelSmall.copyWith( color:AppColors.background))),
     );
   }
 
@@ -198,7 +198,7 @@ class MeTabsView extends GetView<MeController> {
             padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 12.h),
             child: Row(
               children: [
-                _chip('All', controller.selectedChipIndex.value == 0,
+                _chip('all', controller.selectedChipIndex.value == 0,
                         () => controller.updateChip(0)),
               ],
             ),
@@ -206,9 +206,9 @@ class MeTabsView extends GetView<MeController> {
 
           if (isEmpty) ...[
             SizedBox(height: 40.h),
-            Text('No Saved articles', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
+            Text('no_saved_articles'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
             SizedBox(height: 8.h),
-            Text("You haven't saved anything. Yet.", style: AppTextStyles.overline),
+            Text('no_saved_yet'.tr, style: AppTextStyles.overline),
             SizedBox(height: 40.h),
           ] else ...[
 
@@ -300,11 +300,11 @@ class MeTabsView extends GetView<MeController> {
             children: [
               Icon(Icons.visibility_off_outlined,  color: Colors.grey, size: 16.sp),
               SizedBox(width: 6.w),
-              Text('Visible only to you', style:AppTextStyles.labelMedium.copyWith(color: AppColors.info)),
+              Text('visible_only_you'.tr,style:AppTextStyles.labelMedium.copyWith(color: AppColors.info)),
               const Spacer(),
               GestureDetector(
                   onTap: () => controller.onClearAll(context),
-                  child:Text('Clear All', style:AppTextStyles.small.copyWith(
+                  child:Text('clear_all'.tr, style:AppTextStyles.small.copyWith(
                       color:Get.isDarkMode? Color(0xFF3498FA):Color(0xFF4DA4FB)))),
             ],
           ),
@@ -330,9 +330,9 @@ class MeTabsView extends GetView<MeController> {
       padding: EdgeInsets.only(top: 60.w),
       child: Column(
         children: [
-          Text('No History', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
+          Text('no_history'.tr, style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white)),
           SizedBox(height: 8.h),
-          Text('Nothing yet. Start reading!', style:AppTextStyles.overline),
+          Text('start_reading'.tr, style:AppTextStyles.overline),
         ],
       ),
     );

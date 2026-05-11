@@ -22,10 +22,10 @@ class FullscreenView extends GetView<FullscreenController> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: controller.onSkip,
-                  child:Text('Skip', style: AppTextStyles.bodyMedium))),
+                  child:Text('skip'.tr, style: AppTextStyles.bodyMedium))),
                SizedBox(height: 100.h),
               // Title
-               Text('Enable full screen now', style:AppTextStyles.headlineLarge),
+              Text('enable_full_screen'.tr, style: AppTextStyles.headlineLarge),
             SizedBox(height: 32.h),
               // Phone mockup
               Expanded(
@@ -43,7 +43,7 @@ class FullscreenView extends GetView<FullscreenController> {
                     shape: RoundedRectangleBorder(
                       side:BorderSide(color: Get.isDarkMode?Colors.white:Color(0xFFEDEDED)),
                       borderRadius: BorderRadius.circular(8.r))),
-                     child: Text('Allow', style: AppTextStyles.bodySmall.copyWith(color: Color(0xFF242424))))),
+                     child: Text('allow'.tr, style: AppTextStyles.bodySmall.copyWith(color: Color(0xFF242424))))),
 
              SizedBox(height: 100.h),
             ],

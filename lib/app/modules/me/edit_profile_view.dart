@@ -26,7 +26,7 @@ class EditProfileView extends StatelessWidget {
         leading: GestureDetector(
           onTap: () => Get.back(),
           child: Icon(Icons.arrow_back_ios,color:AppColors.textOnDark, size: 20.sp)),
-        title: Text('Edit Profile', style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
+        title: Text('edit_profile'.tr, style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
         centerTitle: true,
         actions: [
           IconButton(icon: Icon(Icons.more_vert, color:AppColors.white),
@@ -63,7 +63,7 @@ class EditProfileView extends StatelessWidget {
                         );
                         }),
                          SizedBox(height: 8.r),
-                        Text('Edit Photo', style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+                        Text('edit_photo'.tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
                       ],
                     ),
                   ),
@@ -71,33 +71,33 @@ class EditProfileView extends StatelessWidget {
                    SizedBox(height: 32.h),
 
                   // Name
-                  _inputField('Name', controller.nameController),
+                  _inputField('name'.tr, controller.nameController),
                    SizedBox(height: 12.h),
 
               Row(
                 children: [
                   // User Name
-                 Expanded(child: _inputField('User Name', controller.userNameController)),
+                 Expanded(child: _inputField('user_name'.tr, controller.userNameController)),
                   SizedBox(width: 20.w),
                   // Email
-                 Expanded(child: _inputField('Email', controller.emailController,
+                 Expanded(child: _inputField('email'.tr, controller.emailController,
                       keyboardType: TextInputType.emailAddress)),
                     ]
                   ),
 
                    SizedBox(height: 20.h),
                   // Bio
-                  _inputField('Bio', controller.bioController),
+                  _inputField('bio'.tr, controller.bioController),
                    SizedBox(height: 20.h),
 
                    // Website
-                  _inputField('Website', controller.websiteController),
+                  _inputField('website'.tr, controller.websiteController),
                    SizedBox(height: 20.h),
 
                   Row(
                     children: [
                       Obx(() => _dropdownField(
-                          label: 'Birth year',
+                          label: 'birth_year'.tr,
                           value: DateFormat('dd/MM/yyyy').format(controller.selectedBirthDate.value),
                           onTap: () => controller.chooseBirthDate(context),
                           isDate: true)),
@@ -106,7 +106,7 @@ class EditProfileView extends StatelessWidget {
 
                   // Gender
                       Obx(() =>_dropdownField(
-                      label: 'Gender',
+                      label: 'gender'.tr,
                       value: controller.selectedGender.value,
                     onTap: () => _showGenderPicker(context, controller))),
                   ],
@@ -128,7 +128,7 @@ class EditProfileView extends StatelessWidget {
                   backgroundColor:AppColors.confirm,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r))),
-                child: Text('Save', style: AppTextStyles.bodySmall.copyWith(
+                child: Text('save'.tr, style: AppTextStyles.bodySmall.copyWith(
                     color: Colors.white,fontWeight: FontWeight.w600))))),
         ],
       ),
@@ -205,7 +205,7 @@ class EditProfileView extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.arrow,
-        title: Text('Gender', style: AppTextStyles.displaySmall.copyWith(
+        title: Text('gender'.tr, style: AppTextStyles.displaySmall.copyWith(
             color: AppColors.white), textAlign: TextAlign.center),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -232,7 +232,7 @@ class EditProfileView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('Cancel', style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+            child: Text('cancel'.tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
           ),
         ],
       ),
@@ -245,7 +245,7 @@ class EditProfileView extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.arrow,
-        title: Text('Choose your photo', style: AppTextStyles.displaySmall.copyWith(
+        title: Text('choose_photo'.tr, style: AppTextStyles.displaySmall.copyWith(
             color: AppColors.white), textAlign: TextAlign.center),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -257,7 +257,7 @@ class EditProfileView extends StatelessWidget {
               },
               child:  Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.w),
-                child: Text('Take a picture',
+                child: Text('take_picture'.tr,
                     style:AppTextStyles.caption.copyWith(color: AppColors.white)))),
             GestureDetector(
               onTap: () {
@@ -265,7 +265,7 @@ class EditProfileView extends StatelessWidget {
                 AuthController.to.pickAndUploadImage(img_picker.ImageSource.gallery);              },
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h),
-                child: Text('Choose from gallery',
+                child: Text('choose_gallery'.tr,
                     style:AppTextStyles.caption.copyWith(color: AppColors.white)))),
           ],
         ),
@@ -274,7 +274,7 @@ class EditProfileView extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            child:Text('Cancel', style:AppTextStyles.caption.copyWith(color: AppColors.white))),
+            child:Text('cancel'.tr, style:AppTextStyles.caption.copyWith(color: AppColors.white))),
         ],
       ),
     );
@@ -322,7 +322,7 @@ class EditProfileView extends StatelessWidget {
                       colorFilter: ColorFilter.mode(AppColors.linkColor, BlendMode.srcIn)),
                     SizedBox(width: 12.w),
                     Expanded(
-                      child: Text('Delete account',
+                      child: Text('delete_account'.tr,
                         style: AppTextStyles.caption.copyWith(color: AppColors.red))),
                   ],
                 ),
@@ -341,22 +341,22 @@ class EditProfileView extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor:AppColors.search,
-        title:Text('Are you sure you want to delete account?',
+        title:Text('delete_account_confirm'.tr,
             style:AppTextStyles.caption.copyWith(color: AppColors.white), textAlign: TextAlign.center),
-        content: Text( 'Deleting your account is permanent and means you won\'t be able to recover all your data, including saved articles, comments and followed medias.',
+        content: Text('delete_account_desc'.tr,
           style:AppTextStyles.caption.copyWith(color: AppColors.white), textAlign: TextAlign.center),
         actions: [
           TextButton(
             onPressed: () {
               Get.back();
             },
-            child:Text('Cancel', style:AppTextStyles.headlineMedium.copyWith(color: AppColors.white))),
+            child:Text('cancel'.tr, style:AppTextStyles.headlineMedium.copyWith(color: AppColors.white))),
           TextButton(
             onPressed: () {
               Get.back();
               AuthController.to.deleteAccount();
             },
-            child: Text('Delete', style: AppTextStyles.headlineMedium.copyWith(color: AppColors.red))),
+            child: Text('delete'.tr, style: AppTextStyles.headlineMedium.copyWith(color: AppColors.red))),
         ],
       ),
     );

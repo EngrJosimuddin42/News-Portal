@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:news_break/app/controllers/me/settings/settings_controller.dart';
 import 'package:news_break/app/widgets/app_snackbar.dart';
 import '../../controllers/auth/auth_controller.dart';
 import '../../theme/app_colors.dart';
@@ -15,15 +16,10 @@ class EditProfileController extends GetxController {
 
   // Observable Variables
   var isLoading = false.obs;
-  var selectedGender = 'Female'.obs;
+  var selectedGender = 'female'.obs;
   var selectedBirthDate = DateTime(2005, 12, 12).obs;
 
-  final List<String> genders = [
-    'Female',
-    'Male',
-    'Non-binary',
-    'Prefer not to say',
-  ];
+  List<String> get genders => ['female'.tr, 'male'.tr, 'non_binary'.tr, 'prefer_not_say'.tr];
 
   @override
   void onInit() {
@@ -34,7 +30,7 @@ class EditProfileController extends GetxController {
     bioController = TextEditingController(text: user?.bio ?? '');
     websiteController = TextEditingController(text: user?.website ?? '');
     emailController = TextEditingController(text: user?.email ?? '');
-    selectedGender.value = user?.gender ?? 'Female';
+    selectedGender.value = user?.gender ?? 'female';
 
     if (user?.birthYear != null && user!.birthYear!.isNotEmpty) {
       try {
@@ -62,6 +58,8 @@ class EditProfileController extends GetxController {
 
   // Birth Date Picker Logic
   Future<void> chooseBirthDate(BuildContext context) async {
+    final isDark = SettingsController.to.isDarkMode.value;
+
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedBirthDate.value,
@@ -70,13 +68,20 @@ class EditProfileController extends GetxController {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-              colorScheme: ColorScheme.dark(
-                  primary: AppColors.linkColor,
-                  onPrimary: Colors.white,
-                  surface: const Color(0xFF242424),
-                  onSurface: Colors.white),
-              textButtonTheme: TextButtonThemeData(
-                  style: TextButton.styleFrom(foregroundColor: AppColors.linkColor))),
+            colorScheme: isDark
+                ? ColorScheme.dark(
+              primary: AppColors.linkColor,
+              onPrimary: Colors.white,
+              surface: const Color(0xFF242424),
+              onSurface: Colors.white)
+                : ColorScheme.light(
+              primary: AppColors.linkColor,
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.linkColor))),
           child: child!,
         );
       },

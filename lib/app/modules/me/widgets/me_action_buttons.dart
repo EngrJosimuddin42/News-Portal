@@ -35,8 +35,8 @@ class MeActionButtons extends GetView<MeController> {
                 ),
                 child: Text(
                   controller.isCreator.value
-                      ? 'Creator dashboard'
-                      : 'Become a creator',
+                      ? 'creator_dashboard'.tr
+                      : 'become_creator'.tr,
                   style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white),
                 ),
               ),
@@ -57,19 +57,12 @@ class MeActionButtons extends GetView<MeController> {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 14.h),
                     ),
-                    child: Text(
-                      'Complete profile',
-                      style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white),
-                    ),
-                  ),
+                    child: Text('complete_profile'.tr,
+                      style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white))),
                   // Red dot
                   if (!controller.isProfileComplete)
-                    Positioned(
-                      top: 8.h,
-                      right: 8.w,
-                      child: Container(
-                        width: 6.w,
-                        height: 6.h,
+                    Positioned( top: 8.h, right: 8.w,
+                      child: Container( width: 6.w, height: 6.h,
                         decoration: BoxDecoration(
                           color: AppColors.linkColor,
                           shape: BoxShape.circle,

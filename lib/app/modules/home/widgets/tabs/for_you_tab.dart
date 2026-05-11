@@ -25,7 +25,7 @@ class ForYouTab extends GetView<HomeController> {
     return ListView(
       children: [
         // People section
-        _buildSectionHeader('People You May Like'),
+        _buildSectionHeader('people_you_may_like'),
 
       Obx(() {
         if (socialController.suggestedPeople.isEmpty) {
@@ -61,7 +61,7 @@ class ForYouTab extends GetView<HomeController> {
         SizedBox(height: 6.h),
 
         // Local clips section
-        _buildSectionHeader('Local clips'),
+        _buildSectionHeader('local_clips'),
         SizedBox( height: 160.h,
           child: ListView.separated(
             padding:  EdgeInsets.symmetric(horizontal: 16.w),
@@ -111,7 +111,7 @@ class ForYouTab extends GetView<HomeController> {
   Widget _buildSectionHeader(String title) {
     return Padding(
       padding:  EdgeInsets.fromLTRB(16.w,8.h, 16.w, 12.h),
-      child: Text( title,
+      child: Text(  title.tr,
         style:AppTextStyles.headlineMedium.copyWith(color: AppColors.white)),
     );
   }

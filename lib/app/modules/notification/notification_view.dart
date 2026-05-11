@@ -25,7 +25,7 @@ class NotificationAppBar extends GetView<NotificationController>
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor:AppColors.scaffoldBg,
-      title: Text('Notifications', style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
+      title:  Text('notifications'.tr, style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
       centerTitle: true,
       actions: [
         IconButton(
@@ -113,7 +113,7 @@ class NotificationBody extends GetView<NotificationController> {
            SizedBox(height: 16.h),
 
           if (items.isNotEmpty) ...[
-            _sectionLabel('Today'),
+            _sectionLabel('today'),
             ...items.take(2).map((model) => Column(
               children: [
                 NotificationItemCard(item: model),
@@ -123,7 +123,7 @@ class NotificationBody extends GetView<NotificationController> {
           ],
 
           if (items.length > 2) ...[
-            _sectionLabel('Earlier'),
+            _sectionLabel('earlier'),
             ...items.skip(2).map((model) => Column(
               children: [
                 NotificationItemCard(item: model),
@@ -154,7 +154,7 @@ class NotificationBody extends GetView<NotificationController> {
     return Container(
       padding:EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration:BoxDecoration(color:Get.isDarkMode? Color(0xFF212121):Colors.white),
-      child: Text(label, style: AppTextStyles.textSmall),
+      child: Text(label.tr, style: AppTextStyles.textSmall),
     );
   }
 }

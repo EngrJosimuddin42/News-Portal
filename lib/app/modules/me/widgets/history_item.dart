@@ -134,7 +134,7 @@ class HistoryItem extends StatelessWidget {
                     children: [
                       SvgPicture.asset(AppAssets.deleteIcon, width: 20.w, height: 20.h,colorFilter: ColorFilter.mode(AppColors.linkColor,BlendMode.srcIn)),
                        SizedBox(width: 12.w),
-                      Text( 'Remove from history', style: AppTextStyles.caption.copyWith(color: AppColors.linkColor)),
+                      Text( 'remove_from_history'.tr, style: AppTextStyles.caption.copyWith(color: AppColors.linkColor)),
                     ],
                   ),
                 ),

@@ -225,7 +225,7 @@ class NotificationItemCard extends StatelessWidget {
             child: Obx(() {
 
               final commentCount = (item is NewsModel) ? socialCtrl.getCommentCount(item, source: type).value : 0;
-              return Text('${socialCtrl.formatCount(commentCount)} comments', style: AppTextStyles.button.copyWith(color: AppColors.dot));
+              return Text('${socialCtrl.formatCount(commentCount)} ${'comments'.tr}', style: AppTextStyles.button.copyWith(color: AppColors.dot));
             }),
           ),
            SizedBox(width: 16.w),
@@ -235,7 +235,7 @@ class NotificationItemCard extends StatelessWidget {
 
           GestureDetector(
             onTap: () => socialCtrl.share(id: id, title: 'Check this out!', type: type),
-            child: Text('$shareCount shares', style: AppTextStyles.button.copyWith(color: AppColors.dot)),
+            child: Text('$shareCount ${'shares'.tr}', style: AppTextStyles.button.copyWith(color: AppColors.dot)),
           ),
         ],
       ),

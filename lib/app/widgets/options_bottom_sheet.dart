@@ -122,7 +122,7 @@ class OptionsBottomSheet {
                   borderRadius: BorderRadius.circular(12.r)),
               child: _optionTile(
                 isAiIcon: true,
-                title: 'Ask/request/report anything',
+                title: 'ask_request_report'.tr,
                 titleColor:AppColors.textOnDark,
                 onTap: () {
                   Get.back();

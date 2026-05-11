@@ -45,7 +45,7 @@ class HomeTabBar extends StatelessWidget {
                   color: isSelected ? AppColors.surface : Colors.transparent,
                   borderRadius: BorderRadius.circular(20.r)),
                 child: Center(
-                child: Text( c.tabs[tabIndex],  style: AppTextStyles.bodySmall.copyWith(
+                child: Text( c.tabs[tabIndex].tr,  style: AppTextStyles.bodySmall.copyWith(
                     color: isSelected
                         ? AppColors.background
                         : AppColors.white,

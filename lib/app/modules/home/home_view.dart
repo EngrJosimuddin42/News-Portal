@@ -83,7 +83,7 @@ class HomeView extends GetView<HomeController> {
         floatingActionButton: Obx(() {
           if (controller.selectedTabIndex.value == 0 &&
               controller.tabs.isNotEmpty &&
-              controller.tabs[0] == 'Reactions') {
+              controller.tabs[0] == 'reactions')  {
             return FloatingActionButton(
               onPressed: controller.onCreatePost,
               backgroundColor:Color(0xFF215C96),
@@ -101,16 +101,16 @@ class HomeView extends GetView<HomeController> {
 
   Widget _buildTabContentByName(String tabName) {
     switch (tabName) {
-      case 'Reactions':     return const ReactionsTab();
-      case 'For you':       return const ForYouTab();
-      case 'Local':         return const LocalTab();
-      case 'Local Tv':      return const LocalTvTab();
-      case 'Entertainment': return const EntertainmentTab();
-      case 'Sports':        return const SportsTab();
-      case 'Food':          return const FoodTab();
-      case 'Health':        return const HealthTab();
-      case 'Beauty':        return const BeautyTab();
-      case 'Weather':       return const WeatherTab();
+      case 'reactions':     return const ReactionsTab();
+      case 'for_you':       return const ForYouTab();
+      case 'local':         return const LocalTab();
+      case 'local_tv':      return const LocalTvTab();
+      case 'entertainment': return const EntertainmentTab();
+      case 'sports':        return const SportsTab();
+      case 'food':          return const FoodTab();
+      case 'health':        return const HealthTab();
+      case 'beauty':        return const BeautyTab();
+      case 'weather':       return const WeatherTab();
       default:              return const ReactionsTab();
     }
   }

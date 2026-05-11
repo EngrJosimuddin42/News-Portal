@@ -71,7 +71,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         end: Alignment.bottomRight,
                       ),
                     ),
-                    child: Text('Upgrade',
+                    child: Text('upgrade'.tr,
                         style: AppTextStyles.textSmall.copyWith( color:Colors.white))))),
       ],
     );

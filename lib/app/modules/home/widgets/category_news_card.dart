@@ -345,7 +345,7 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                     SvgPicture.asset(AppAssets.shareIcon, width: 20.w, height: 20.h,
                         colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                      SizedBox(width: 4.w),
-                    Text('Share', style: AppTextStyles.labelMedium.copyWith(color: AppColors.white)),
+                    Text('share'.tr, style: AppTextStyles.labelMedium.copyWith(color: AppColors.white)),
                   ],
                 ),
               ),

@@ -6,8 +6,8 @@ class EditTabsController extends GetxController {
   final RxList<String> allTopics = <String>[].obs;
 
   static const List<String> _allPossible = [
-    'Reactions', 'For you', 'Local', 'Local Tv',
-    'Entertainment', 'Sports', 'Food', 'Health', 'Beauty', 'Weather'
+    'reactions', 'for_you', 'local', 'local_tv',
+    'entertainment', 'sports', 'food', 'health', 'beauty', 'weather'
   ];
 
   @override

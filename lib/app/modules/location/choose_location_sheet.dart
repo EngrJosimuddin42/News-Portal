@@ -35,6 +35,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
                   //Back icon for settings screen
                   Builder(builder: (context) {
                     final bool isFromSettings = (Get.arguments as Map?)?['isFromSettings'] ?? false;
@@ -55,7 +56,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
                       controller.confirmLocationSelection();
                       Get.back();
                     },
-                    child: Text('Done', style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen)))
+                    child: Text('done'.tr, style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen)))
                       : const SizedBox.shrink()),
                 ],
               ),
@@ -81,7 +82,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
                         onTap: () => controller.isSearching.value = true,
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
-                          hintText: 'Search city or zip code',
+                          hintText: 'search_city_zip'.tr,
                           hintStyle: AppTextStyles.caption.copyWith(color: Color(0xFFB8B8B8)),
                           prefixIcon: Icon(Icons.search, color:  Color(0xFFB8B8B8), size: 20.sp),
                           border: InputBorder.none,
@@ -97,7 +98,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
                       onTap: () { controller.clearSearch();
                         FocusScope.of(context).unfocus();
                       },
-                      child: Text('Cancel', style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))))
+                      child: Text('cancel'.tr, style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))))
                       : const SizedBox.shrink()),
                 ],
               ),
@@ -141,8 +142,8 @@ class ChooseLocationSheet extends GetView<HomeController> {
                   colorFilter:ColorFilter.mode(Get.isDarkMode?Color(0xFF3498FA):Color(0xFF4DA4FB), BlendMode.srcIn)),
                 SizedBox(width: 8.w),
                 Text(controller.isLocationLoading.value
-                      ? 'Detecting Location...'
-                      : 'Your GPS location',
+                    ? 'detecting_location'.tr
+                    : 'your_gps_location'.tr,
                   style: AppTextStyles.labelSmall.copyWith(color: AppColors.textGreen)),
               ],
             ),
@@ -151,11 +152,11 @@ class ChooseLocationSheet extends GetView<HomeController> {
            SizedBox(height: 16.h),
           Row(
             children: [
-              Text("Couldn't load your location", style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark)),
+              Text('couldnt_load_location'.tr, style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark)),
               const Spacer(),
               GestureDetector(
                 onTap: () => controller.detectGPSLocation(),
-                child: Text('Try Again', style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))),
+                child: Text('try_again'.tr, style: AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))),
             ],
           ),
         ],
@@ -199,7 +200,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
            SizedBox(height: 8.h),
 
           // Primary Location
-          Text('Primary Location', style:AppTextStyles.overline),
+          Text('primary_location'.tr, style:AppTextStyles.overline),
            SizedBox(height: 10.h),
 
           Row(
@@ -226,7 +227,7 @@ class ChooseLocationSheet extends GetView<HomeController> {
                         controller.selectedLocation.value = null;
                         controller.tempLocation.value = null;
                       },
-                      child:Text('Change', style: AppTextStyles.overline.copyWith(decoration: TextDecoration.underline,decorationColor: AppTextStyles.overline.color))),
+                      child:Text('change'.tr, style: AppTextStyles.overline.copyWith(decoration: TextDecoration.underline,decorationColor: AppTextStyles.overline.color))),
                   ],
                 ),
               ),
@@ -234,21 +235,21 @@ class ChooseLocationSheet extends GetView<HomeController> {
                 onTap: () {
                   Get.to(() => const ManageLocationView(), arguments: loc);
                 },
-                child: Text('View', style: AppTextStyles.buttonOutline.copyWith(color: AppColors.textGreen))),
+                child: Text('view'.tr, style: AppTextStyles.buttonOutline.copyWith(color: AppColors.textGreen))),
             ],
           ),
 
            SizedBox(height: 24.h),
 
           // Location You Follow
-          Text('Location You Follow', style:AppTextStyles.overline),
+          Text('location_you_follow'.tr, style:AppTextStyles.overline),
           SizedBox(height: 10.h),
-          Text("You don't follow any other locations. Add more locations to see news in For you from where your friends or family live, or other places you are interested in.",
+          Text('no_follow_locations'.tr,
             style: AppTextStyles.overline.copyWith(color: Color(0xFFCBCBCB))),
           SizedBox(height: 18.h),
           GestureDetector(
               onTap: () => Get.to(() => const ManageLocationView()),
-              child: Text('Add more locations', style:AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))),
+              child: Text('add_more_locations'.tr, style:AppTextStyles.bodySmall.copyWith(color: AppColors.textGreen))),
         ],
       ),
     );

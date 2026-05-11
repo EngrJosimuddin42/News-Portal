@@ -5,6 +5,7 @@ import 'package:news_break/app/theme/app_colors.dart';
 import 'package:news_break/app/theme/app_text_styles.dart';
 import 'package:news_break/app/widgets/bottom_sheet_handle.dart';
 import '../../controllers/me/me_controller.dart';
+import '../../controllers/me/settings/settings_controller.dart';
 
 class CreatorDashboardView extends StatefulWidget {
   const CreatorDashboardView({super.key});
@@ -35,28 +36,37 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
 
   @override
   Widget build(BuildContext context) {
+    return Obx(() {
+      final isDark = SettingsController.to.isDarkMode.value;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor:AppColors.scaffoldBg,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () => Get.back(),
-          child:Icon(Icons.arrow_back_ios,color:AppColors.textOnDark, size: 20.sp)),
-         title: Text('Creator Dashboard',
-          style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
-        centerTitle: true,
-        bottom: PreferredSize(
-            preferredSize:  Size.fromHeight(48.h),
-            child: ColoredBox(
-              color: Colors.white,
-              child: TabBar(
-          controller: _tabController,
-          indicatorColor: Colors.grey,
-          indicatorWeight: 2,
-          labelStyle: AppTextStyles.bodySmall.copyWith(color: Get.isDarkMode?Color(0xFF242424):Color(0xFFDBDBDB)),
-          unselectedLabelStyle:AppTextStyles.caption.copyWith(color: Get.isDarkMode?Color(0xFF242424):AppColors.textOnDark),
-          tabs: const [Tab(text: 'Engagement'), Tab(text: 'Followers')])))),
+          backgroundColor: AppColors.scaffoldBg,
+          elevation: 0,
+          leading: GestureDetector(
+              onTap: () => Get.back(),
+              child: Icon(Icons.arrow_back_ios, color: AppColors.textOnDark,
+                  size: 20.sp)),
+          title: Text('creator_dashboard'.tr,
+              style: AppTextStyles.displaySmall.copyWith(
+                  color: AppColors.white)),
+          centerTitle: true,
+          bottom: PreferredSize(
+              preferredSize: Size.fromHeight(48.h),
+              child: ColoredBox(
+                  color: Colors.white,
+                  child: TabBar(
+                      controller: _tabController,
+                      indicatorColor: Colors.grey,
+                      indicatorWeight: 2,
+                      labelStyle: AppTextStyles.bodySmall.copyWith(
+                          color: isDark? Color(0xFF242424) : Color(0xFFDBDBDB)),
+                      unselectedLabelStyle: AppTextStyles.caption.copyWith(
+                          color: isDark? Color(0xFF242424) : AppColors.textOnDark),
+                    tabs: [
+                      Tab(text: 'engagement'.tr),
+                      Tab(text: 'followers_tab'.tr),
+                    ])))),
 
       body: TabBarView(
         controller: _tabController,
@@ -66,6 +76,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
         ],
       ),
     );
+  });
   }
 
   // Engagement Tab
@@ -77,7 +88,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
       return ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _buildDateRow(),
+          _buildDateRow(isDark: SettingsController.to.isDarkMode.value),
           SizedBox(height: 16.h),
           Row(
             children: controller.engagementStats.asMap().entries.map((entry) {
@@ -94,6 +105,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                       value: stat['value'],
                       percent: stat['percent'],
                       isSelected: stat['isSelected'],
+                      isDark: SettingsController.to.isDarkMode.value,
                     ),
                   ),
                 ),
@@ -105,6 +117,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
           _buildChart(
             title: selectedStat['label'],
             value: selectedStat['value'],
+            isDark: SettingsController.to.isDarkMode.value,
           ),
         ],
       );
@@ -121,8 +134,8 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
       return ListView(
         padding:  EdgeInsets.all(16.h),
         children: [
-          _buildDateRow(),
-           SizedBox(height: 16.h),
+          _buildDateRow(isDark: SettingsController.to.isDarkMode.value),
+          SizedBox(height: 16.h),
           Row(
             children: controller.followerStats.asMap().entries.map((entry) {
               int idx = entry.key;
@@ -138,6 +151,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                       value: stat['value'],
                       percent: stat['percent'],
                       isSelected: stat['isSelected'],
+                      isDark: SettingsController.to.isDarkMode.value,
                     ),
                   ),
                 ),
@@ -148,6 +162,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
           _buildChart(
             title: selectedFollowerStat['label'],
             value: selectedFollowerStat['value'],
+            isDark: SettingsController.to.isDarkMode.value,
           ),
         ],
       );
@@ -155,7 +170,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
   }
 
   //  Date row
-  Widget _buildDateRow() {
+  Widget _buildDateRow({required bool isDark}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -167,12 +182,12 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
             decoration: BoxDecoration(
-              color:Get.isDarkMode?Color(0xFFF0F0F0):Colors.white,
-              border: Border.all(color: Get.isDarkMode?Color(0xFFF0F0F0):Color(0xFFEDEDED)),
+              color:isDark?Color(0xFFF0F0F0):Colors.white,
+              border: Border.all(color:isDark?Color(0xFFF0F0F0):Color(0xFFEDEDED)),
               borderRadius: BorderRadius.circular(38.r)),
             child: Row(
               children: [
-                Obx(() => Text(controller.currentLabel.value,
+                Obx(() => Text(controller.currentLabel.value.tr,
                     style: AppTextStyles.caption.copyWith(color: const Color(0xFF606060)))),
                  SizedBox(width: 4.w),
                  Icon(Icons.keyboard_arrow_down, size: 16.sp, color: Color(0xFF636363)),
@@ -190,17 +205,18 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
     required String value,
     required String percent,
     required bool isSelected,
+    required bool isDark,
   }) {
     return Container(
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: isSelected
-            ? Get.isDarkMode? const Color(0xFFE6F2FE):Colors.white
-            : Get.isDarkMode?Colors.white:Colors.white,
+            ? isDark? const Color(0xFFE6F2FE):Colors.white
+            : Colors.white,
         border: Border.all(
           color: isSelected
-              ? Get.isDarkMode? const Color(0xFF3498FA):Color(0xFFEDEDED)
-              : Get.isDarkMode?const Color(0xFFE5E5E5):Color(0xFFEDEDED),
+              ? isDark? const Color(0xFF3498FA):Color(0xFFEDEDED)
+              : isDark?const Color(0xFFE5E5E5):Color(0xFFEDEDED),
           width: 1),
         borderRadius: BorderRadius.circular(12.r)),
       child: Column(
@@ -208,35 +224,35 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
         children: [
           Row(
             children: [
-              Text(label,
-                style: AppTextStyles.bodySmall.copyWith(color: isSelected?AppColors.textGreen :Get.isDarkMode?Color(0xFF242424):Color(0xFF959595))),
+              Text(label.tr,
+                style: AppTextStyles.bodySmall.copyWith(color: isSelected?AppColors.textGreen :isDark?Color(0xFF242424):Color(0xFF959595))),
                SizedBox(width: 4.h),
-              Icon(Icons.info_outline, size: 16.sp, color: isSelected ? AppColors.textGreen :Get.isDarkMode?Color(0xFF242424):Color(0xFF959595)),
+              Icon(Icons.info_outline, size: 16.sp, color: isSelected ? AppColors.textGreen :isDark?Color(0xFF242424):Color(0xFF959595)),
             ],
           ),
           SizedBox(height: 8.h),
           Text(value,
-            style: AppTextStyles.headlineLarge.copyWith(color: isSelected ? AppColors.textGreen :Get.isDarkMode?Color(0xFF242424):Color(0xFF959595))),
+            style: AppTextStyles.headlineLarge.copyWith(color: isSelected ? AppColors.textGreen :isDark?Color(0xFF242424):Color(0xFF959595))),
           Text(percent,
-            style: AppTextStyles.caption.copyWith(color: isSelected ? AppColors.textGreen :Get.isDarkMode?Color(0xFF242424):Color(0xFF959595))),
+            style: AppTextStyles.caption.copyWith(color: isSelected ? AppColors.textGreen :isDark?Color(0xFF242424):Color(0xFF959595))),
         ],
       ),
     );
   }
 
   //  Chart
-  Widget _buildChart({required String title, required String value}) {
+  Widget _buildChart({required String title, required String value,required bool isDark}) {
     return Container(
       padding:  EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        border: Border.all(color:Get.isDarkMode? Color(0xFFE4E4E4):Color(0xFFEDEDED)),
+        border: Border.all(color:isDark? Color(0xFFE4E4E4):Color(0xFFEDEDED)),
         borderRadius: BorderRadius.circular(12.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: AppTextStyles.caption.copyWith(color: Get.isDarkMode?Color(0xFF242424):Color(0xFF959595))),
+          Text(title.tr, style: AppTextStyles.caption.copyWith(color:isDark?Color(0xFF242424):Color(0xFF959595))),
            SizedBox(height: 4.h),
-          Text(value, style: AppTextStyles.chart.copyWith(color:Get.isDarkMode?Color(0xFF242424):Color(0xFF959595))),
+          Text(value, style: AppTextStyles.chart.copyWith(color:isDark?Color(0xFF242424):Color(0xFF959595))),
            SizedBox(height: 32.h),
           SizedBox(height: 160.h,
             child: CustomPaint(
@@ -275,7 +291,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                         children: [
                          BottomSheetHandle(),
                            SizedBox(height: 12.h),
-                          Text('Select Date Range', style: AppTextStyles.bodyMedium.copyWith(
+                          Text('select_date_range'.tr, style: AppTextStyles.bodyMedium.copyWith(
                               color: AppColors.white), textAlign: TextAlign.center),
                         ],
                       ),
@@ -300,7 +316,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                         margin: EdgeInsets.only(bottom: 12.h),
                         decoration: BoxDecoration(
                           color:AppColors.search,
-                          border: Border.all(color: Get.isDarkMode?Color(0xFF333333):Color(0xFFEDEDED)),
+                          border: Border.all(color: SettingsController.to.isDarkMode.value?Color(0xFF333333):Color(0xFFEDEDED)),
                           borderRadius: BorderRadius.circular(8.r)),
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(horizontal: 16.h),
@@ -308,7 +324,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                             controller.updateDateRange(range['label']!, range['sub']!);
                             Get.back();
                           },
-                          title: Text( range['label']!,
+                          title: Text( range['label']!.tr,
                             style:AppTextStyles.caption.copyWith(color: AppColors.white)),
                           subtitle: Text(range['sub']!,
                             style:AppTextStyles.caption.copyWith(color: AppColors.white)),

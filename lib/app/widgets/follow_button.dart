@@ -30,7 +30,7 @@ class FollowButton extends StatelessWidget {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            isFollowing ? 'Following' : 'Follow',
+            isFollowing ? 'following'.tr : 'follow'.tr,
             style: AppTextStyles.bodyMedium.copyWith(
               color: isFollowing ? Colors.grey : AppColors.textGreen,
             ),

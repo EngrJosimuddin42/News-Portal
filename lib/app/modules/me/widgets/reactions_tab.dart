@@ -220,9 +220,9 @@ class ReactionsTab extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 40.h),
         child: Column(
           children: [
-            Text('No Reactions', style: AppTextStyles.bodyMedium),
+            Text('no_reactions'.tr, style: AppTextStyles.bodyMedium),
              SizedBox(height: 8.h),
-            Text("This user hasn't reacted to anything yet.",
+            Text('no_reactions_yet'.tr,
                 textAlign: TextAlign.center, style: AppTextStyles.overline),
           ],
         ),

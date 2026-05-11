@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app/bindings/app_binding.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return Obx(() {
+
+          // text scale
           final scale = SettingsController.to.selectedTextSize.value == 'Small'
               ? 0.85
               : SettingsController.to.selectedTextSize.value == 'Large'
@@ -48,11 +51,21 @@ class MyApp extends StatelessWidget {
             locale: currentLocale,
             fallbackLocale: const Locale('en', 'US'),
 
+            //Data picker
+            localizationsDelegates:[
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('bn', 'BD'),
+            ],
+
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                  textScaler: TextScaler.linear(scale),
-                ),
+                  textScaler: TextScaler.linear(scale)),
                 child: child!,
               );
             },

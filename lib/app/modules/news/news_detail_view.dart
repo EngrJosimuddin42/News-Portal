@@ -63,7 +63,8 @@ class NewsDetailView extends GetView<HomeController> {
                     child: SvgPicture.asset( AppAssets.starIcon, width: 22.w, height: 22.h,
                         colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn))),
                 SizedBox(width: 8.w),
-                Text('Ask anything', style:AppTextStyles.overline),
+                Expanded(
+                  child: Text('ask_anything'.tr, style: AppTextStyles.overline)),
               ],
             ),
           ),
@@ -218,7 +219,7 @@ class NewsDetailView extends GetView<HomeController> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(48.r),
                       border: Border.all(color: AppColors.border)),
-                      child: Text('Write a comment', style: AppTextStyles.overline,
+                      child: Text('write_a_comment'.tr, style: AppTextStyles.overline,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center)))),
@@ -262,7 +263,7 @@ class NewsDetailView extends GetView<HomeController> {
                 }),
                    SizedBox(width: 16.w),
 
-                   _actionItem(label:'Share',
+                   _actionItem(label:'share',
                        onTap: () => socialCtrl.onSharePressed(news),asset: AppAssets.shareIcon,color: AppColors.white),
                ],
             ),
@@ -295,7 +296,7 @@ class NewsDetailView extends GetView<HomeController> {
             Icon(icon, color: color, size: 20.sp),
 
            SizedBox(width: 4.w),
-          Text( label,
+          Text( label.tr,
             style: AppTextStyles.labelMedium.copyWith(color: color),
           ),
         ],
