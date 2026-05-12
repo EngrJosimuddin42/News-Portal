@@ -125,8 +125,8 @@ class AppTranslations extends Translations {
       'login_to_comment': 'Log in or sign up to comment',
       'terms_agree': 'By using NewsBreak, you agree to our ',
       'terms_of_use': 'Terms of use',
-      'and': ' and\n',
-      'privacy_policy': 'Privacy Policy',
+      'and': ' and',
+      'privacy_policy': '\nPrivacy Policy',
       'terms_end': '',
 
       //location
@@ -362,8 +362,8 @@ class AppTranslations extends Translations {
       'login_to_comment': 'মন্তব্য করতে লগইন বা সাইন আপ করুন',
       'terms_agree': 'NewsBreak ব্যবহার করে আপনি আমাদের ',
       'terms_of_use': 'ব্যবহারের শর্তাবলী',
-      'and': ' এবং\n',
-      'privacy_policy': 'গোপনীয়তা নীতিতে',
+      'and': ' এবং',
+      'privacy_policy': '\nগোপনীয়তা নীতিতে',
       'terms_end': ' সম্মত হচ্ছেন।',
 
       //location

@@ -20,16 +20,17 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColors.scaffoldBg,
       elevation: 0,
-      titleSpacing: 16,
-      title: GestureDetector(
+      titleSpacing: 0,
+      title:Padding(
+          padding: EdgeInsets.only(left: 16.w),
+          child: GestureDetector(
         onTap: c.onChooseLocation,
         child: Obx(() => Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
               child: Text(c.locationTitle,
-              style: AppTextStyles.headlineMedium,
-              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white,height: 1.0,letterSpacing: 0),
+                  overflow: TextOverflow.visible,
              maxLines: 1)),
              SizedBox(width: 6.w),
             Container(width: 18.w, height: 18.h,
@@ -40,7 +41,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.arrow, size: 15.sp))),
           ],
         )),
-      ),
+      )),
 
       actions: [
         IconButton(
@@ -57,11 +58,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             colorFilter: ColorFilter.mode(AppColors.surface, BlendMode.srcIn))),
 
         Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 4.w),
             child: GestureDetector(
                 onTap: () => Get.to(() => const PremiumScreen()),
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),

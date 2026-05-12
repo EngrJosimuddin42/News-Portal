@@ -108,10 +108,30 @@ class NBotSheet extends GetView<NBotController> {
                         ? null
                         : () => controller.sendMessage(),
                     child: controller.isResponding.value
-                        ?  SizedBox( width: 20.w, height: 20.h,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.green))
-                        : SvgPicture.asset(AppAssets.sendIcon, width: 32.w, height: 32.h,
-                        colorFilter: ColorFilter.mode(AppColors.border,BlendMode.srcIn)))),
+                        ?  SizedBox( width: 32.w, height: 32.h,
+                      child: Padding(
+                        padding: EdgeInsets.all(6.w),
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.green),
+                      ),
+                    )
+                        : Container( width: 32.w, height: 32.h,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.border),
+                        color:AppColors.sheet,
+                        shape: BoxShape.circle),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          AppAssets.send1Icon,
+                          width: 20.w,
+                          height: 20.h,
+                          colorFilter: ColorFilter.mode(
+                            Color(0xFFB8B8B8),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )),
                 ],
               ),
             ),

@@ -139,21 +139,23 @@ class SignInView extends GetView<SignInController> {
 
   //Reusable Terms
   Widget _terms() {
-    return RichText(
+    return SizedBox(
+        width: 335.w,
+        child: RichText(
       textAlign: TextAlign.center,
-      text: TextSpan(style: AppTextStyles.labelMedium,
+      text: TextSpan(style: AppTextStyles.labelMedium.copyWith(height: 1.5,letterSpacing: -0.3,),
         children: [
           TextSpan(text: 'terms_agree'.tr),
-          TextSpan(  text: 'terms_of_use'.tr,  style: TextStyle(color: AppColors.term),
-            recognizer: TapGestureRecognizer()
-              ..onTap = controller.onTermsTap),
+          TextSpan(  text: 'terms_of_use'.tr,  style: AppTextStyles.labelMedium.copyWith(color: AppColors.term,decoration: TextDecoration.underline,letterSpacing: -0.3),
+            recognizer: TapGestureRecognizer() ..onTap = controller.onTermsTap),
           TextSpan(text: 'and'.tr),
-          TextSpan(text: 'privacy_policy'.tr, style: const TextStyle(color: AppColors.term),
+          TextSpan(text: 'privacy_policy'.tr, style:AppTextStyles.labelMedium.copyWith(color: AppColors.term,decoration: TextDecoration.underline,letterSpacing: -0.3),
             recognizer: TapGestureRecognizer()
               ..onTap = controller.onPrivacyTap),
           TextSpan(text: 'terms_end'.tr),
         ],
       ),
+    ),
     );
   }
 }

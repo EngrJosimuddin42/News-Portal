@@ -15,7 +15,7 @@ class SplashView extends GetView<SplashController> {
       final Color iconColor = isDark ? Colors.white : Colors.black;
       controller;
       return Scaffold(
-        backgroundColor: isDark ? const Color(0xFF242424) : Colors.white,
+        backgroundColor: AppColors.scaffoldBg,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -188,16 +188,16 @@ class _OpenPositionsViewState extends State<OpenPositionsView> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: value,
+          dropdownColor:AppColors.arrow,
           hint: Text('Select', style: AppTextStyles.overline),
           icon: Icon(Icons.keyboard_arrow_down, color:AppColors.textOnDark, size: 20.sp),
           isExpanded: true,
-          style: AppTextStyles.caption.copyWith(color: const Color(0xFF252F39)),
-          items: [
-            const DropdownMenuItem<String>(
-              value: null,
-              child: Text('Select')),
-            ...items.map((item) => DropdownMenuItem<String>(value: item, child: Text(item))),
-          ],
+          items: items.map((item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(item,style:AppTextStyles.caption.copyWith(color:AppColors.dropDown)),
+            );
+          }).toList(),
           onChanged: onChanged,
         ),
       ),
