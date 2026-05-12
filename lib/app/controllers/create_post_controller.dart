@@ -94,24 +94,72 @@ class CreatePostController extends GetxController {
   }
 
   Future<void> onAddMedia() async {
-    try {
-      final XFile? pickedFile = isReel.value
-          ? await _picker.pickVideo(source: ImageSource.gallery, maxDuration: const Duration(seconds: 60))
-          : await _picker.pickImage(source: ImageSource.gallery);
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Get.isDarkMode ? const Color(0xFF242424) : Colors.white,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("Select Media Type", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 20),
+            ListTile(
+              leading: const Icon(Icons.image),
+              title: const Text('Upload Image'),
+              onTap: () {
+                Get.back();
+                pickImage();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.video_collection),
+              title: const Text('Upload Reel (Video)'),
+              onTap: () {
+                Get.back();
+                pickVideo();
+              },
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
 
+
+  Future<void> pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
         selectedMedia.value = File(pickedFile.path);
-        if (isReel.value) {
-          await generateThumbnail(pickedFile.path);
-        } else {
-          videoThumbnail.value = null;
-        }
+        isReel.value = false;
+        postType.value = PostType.news;
+        videoThumbnail.value = null;
       }
     } catch (e) {
-      AppSnackbar.error(message: 'Could not pick media: $e');
+      AppSnackbar.error(message: 'Could not pick image: $e');
     }
   }
 
+  Future<void> pickVideo() async {
+    try {
+      final XFile? pickedFile = await _picker.pickVideo(
+        source: ImageSource.gallery,
+        maxDuration: const Duration(seconds: 60),
+      );
+      if (pickedFile != null) {
+        selectedMedia.value = File(pickedFile.path);
+        isReel.value = true;
+        postType.value = PostType.reel;
+        await generateThumbnail(pickedFile.path);
+      }
+    } catch (e) {
+      AppSnackbar.error(message: 'Could not pick video: $e');
+    }
+  }
 
   //  Post type  validation & submit
   void onPost() async {
@@ -128,29 +176,40 @@ class CreatePostController extends GetxController {
       final socialCtrl = Get.find<SocialInteractionController>();
 
         if (isNewsPost) {
-        Get.find<HomeController>().addUserPost(
-          text: textController.text,
-          imageUrl: mediaUrl,
-          location: selectedLocation.value,
-        );
-        socialCtrl.userPosts.add(NewsModel(
-          id: DateTime.now().millisecondsSinceEpoch,
-          category: 'News',
-          title: textController.text,
-          author: AuthController.to.user.value?.name ?? '',
-          timeAgo: 'Just now',
-          publisherName: AuthController.to.user.value?.name ?? '',
-          publisherMeta: '',
-          imageUrl: mediaUrl ?? '',
-          body: textController.text,
-        ));
-      } else if (isReelPost) {
-        Get.find<ReelsController>().addUserReel(
-          videoPath: selectedMedia.value!.path,
-          thumbnailPath: videoThumbnail.value?.path ?? '',
-          text: textController.text,
-        );
-      }
+          Get.find<HomeController>().addUserPost(
+            text: textController.text,
+            imageUrl: mediaUrl,
+            location: selectedLocation.value,
+          );
+          socialCtrl.userPosts.add(NewsModel(
+            id: DateTime
+                .now()
+                .millisecondsSinceEpoch,
+            category: 'News',
+            title: textController.text,
+            author: AuthController.to.user.value?.name ?? '',
+            timeAgo: 'Just now',
+            publisherName: AuthController.to.user.value?.name ?? '',
+            publisherMeta: '',
+            imageUrl: mediaUrl ?? '',
+            body: textController.text,
+          ));
+        }
+        else if (isReelPost) {
+          Get.find<ReelsController>().addUserReel(
+            videoPath: selectedMedia.value!.path,
+            thumbnailPath: videoThumbnail.value?.path ?? '',
+            text: textController.text,
+          );
+          Get.find<HomeController>().addUserPost(
+            text: textController.text,
+            imageUrl: videoThumbnail.value?.path,
+            videoUrl: selectedMedia.value!.path,
+            location: selectedLocation.value,
+            isReel: true,
+          );
+        }
+
 
       final successMsg = _getSuccessMessage();
       utility.clearAllMedia();

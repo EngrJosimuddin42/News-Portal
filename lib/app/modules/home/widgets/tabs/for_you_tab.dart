@@ -6,6 +6,7 @@ import '../../../../controllers/home_controller.dart';
 import '../../../../controllers/social_interaction_controller.dart';
 import '../../../../models/clip_model.dart';
 import '../../../../theme/app_colors.dart';
+import '../../../trends/player/full_screen_video_player.dart';
 import '../ad_video_card.dart';
 import '../clip_card.dart';
 import '../people_card.dart';
@@ -71,11 +72,11 @@ class ForYouTab extends GetView<HomeController> {
             itemBuilder: (_, i) {
               final reel = controller.forYouClips[i];
               return GestureDetector(
-                  onTap: () {
-                    controller.customReelsForNavigation.assignAll(controller.forYouClips);
-                    controller.customReelsInitialIndex.value = i;
-                    controller.selectedNavIndex.value = 1;
-                  },
+                onTap: () {
+                  Get.to(() => FullScreenVideoPlayer(url: reel.videoUrl ?? ''),
+                    arguments: reel,
+                  );
+                },
                 child: ClipCard(
                   clip: ClipModel(
                     title: reel.userName,

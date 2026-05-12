@@ -244,7 +244,12 @@ class HomeController extends GetxController {
   }
 
 
-  void addUserPost({required String text, String? imageUrl, String? location}) {
+  void addUserPost({
+    required String text,    String? imageUrl,
+    String? location,
+    String? videoUrl,
+    bool isReel = false,
+  }) {
     final user = AuthController.to.user.value;
 
     final postLocation = location?.isNotEmpty == true
@@ -253,21 +258,22 @@ class HomeController extends GetxController {
 
     final newNews = NewsModel(
       id: DateTime.now().millisecondsSinceEpoch,
-      category: 'General',
+      category: isReel ? 'Reel' : 'General',
       title: text,
       author: user?.name ?? 'Me',
       publisherName: user?.name ?? 'Me',
       publisherMeta: postLocation,
       timeAgo: 'Just now',
       imageUrl: imageUrl ?? '',
+      videoUrl: videoUrl,
       body: text,
       publisherImageUrl: user?.profileImageUrl ?? '',
     );
 
-    //  reactions tab  add
     reactionsNews.insert(0, newNews);
-    //  for you tab  add
     forYouNews.insert(0, newNews);
+
+    update();
   }
 
 
