@@ -10,7 +10,7 @@ class PremiumController extends GetxController {
 
   var yearlyPrice = "\$59.99".obs;
   var monthlyPrice = "\$19.99".obs;
-  var freeTrialText = "Start 7day Free Trial".obs;
+  var freeTrialText = "Start 7-day free trial".obs;
   var disclaimerText = "Lorem ipsum dolor sit amet consectetur. Sapien netus sed turpis euismod tortor. Consequat arcu commodo non habitant sit cras aliquam elementum commodo. Proin viverra pharetra etiam nibh nunc.".obs;
   final List<String> paymentMethods = ['bkash', 'nagad', 'rocket'];
 

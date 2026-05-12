@@ -145,7 +145,7 @@ class AppTranslations extends Translations {
 
       //Premium
       'banner_title': 'Try Premium for FREE',
-      'banner_subtitle': 'Ad-free reading, boosted \ncomments, smarter \nrecommendations and more.',
+      'banner_subtitle': 'Ad-free reading,boosted comments,\nsmarter recommendations and more.',
       'upgrade': 'Upgrade',
       'choose_your_plan': 'Choose Your Plan',
       'become_premium': 'Become a Premium Member',

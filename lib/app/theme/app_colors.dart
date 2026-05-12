@@ -44,7 +44,6 @@ class AppColors {
   static Color get divide => _dark ? const Color(0xFF262530) : const Color(0xFFD0CFDA);
   static Color get price => _dark ? const Color(0xFF7B83EB) : const Color(0xFFFE7673);
   static Color get confirm => _dark ? const Color(0xFF7B83EB) : const Color(0xFF7B82EB);
-  static Color get dropDown => _dark ? const Color(0xFF0D0D0D) : const Color(0xFFFFFFFF);
 
   static const Color linkColor = Color(0xFFFE5C5A);
   static const Color term = Color(0xFF7B83EB);

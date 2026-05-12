@@ -125,8 +125,9 @@ class _NewsCardState extends State<NewsCard> {
                     Expanded(
                       child: Text(
                         news.publisherMeta,
-                        style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.overline.copyWith(
+                            color: AppColors.info,letterSpacing: 0,height: 1.0),
+                        overflow: TextOverflow.visible,
                         maxLines: 1)),
 
                      SizedBox(width: 8.w),

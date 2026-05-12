@@ -31,41 +31,38 @@ class PremiumBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     controller.bannerTitle,
-                    style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    controller.bannerSubtitle,
-                    style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                  ),
+                    style: AppTextStyles.buttonOutline.copyWith(color: AppColors.white)),
+                  SizedBox(height:12.h),
+                  Text(controller.bannerSubtitle,
+                    style: AppTextStyles.overline.copyWith(
+                      color: AppColors.info,letterSpacing: 0,height: 1.5,)),
                 ],
               ),
             ),
             Container(
+              height: 50,width: 100,
               decoration: BoxDecoration(
                 gradient: AppColors.customGradient,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
+                borderRadius: BorderRadius.circular(8.r)),
               child: ElevatedButton(
                 onPressed: () => Get.to(
                       () => const PremiumScreen(),
-                  binding: PremiumBinding(),
-                ),
+                  binding: PremiumBinding()),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-                ),
+                    borderRadius: BorderRadius.circular(8.r)),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h)),
                 child: Text(
                   controller.bannerButtonText,
                   style: AppTextStyles.textSmall.copyWith(color: Colors.white),

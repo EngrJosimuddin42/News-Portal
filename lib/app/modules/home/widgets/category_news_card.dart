@@ -89,8 +89,9 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                         colorFilter: ColorFilter.mode(AppColors.info, BlendMode.srcIn)),
                        SizedBox(width: 4.w),
                       Flexible(
-                          child: Text(news.category, style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                              overflow: TextOverflow.ellipsis, maxLines: 1)),
+                          child: Text(news.category, style: AppTextStyles.overline.copyWith(
+                              color: AppColors.info,letterSpacing: 0,height: 1.0,),
+                              overflow: TextOverflow.visible, maxLines: 1)),
                        SizedBox(width: 18.w),
 
                       SvgPicture.asset(AppAssets.locationIcon, height: 18.h, width: 18.w,
@@ -98,8 +99,9 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                        SizedBox(width: 4.w),
                       Flexible(
                           child: Text(news.publisherMeta,
-                              style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                              overflow: TextOverflow.ellipsis, maxLines: 1)),
+                              style: AppTextStyles.overline.copyWith(
+                                  color: AppColors.info,letterSpacing: 0,height: 1.0,),
+                              overflow: TextOverflow.visible, maxLines: 1)),
                        SizedBox(width: 18.w),
 
                       SvgPicture.asset(AppAssets.timeIcon, height: 18.h, width: 18.w,

@@ -172,33 +172,49 @@ class _OpenPositionsViewState extends State<OpenPositionsView> {
     );
   }
 
-
-  // Dropdown Builder
   Widget _buildDropdown({
     required String? value,
     required List<String> items,
     required ValueChanged<String?> onChanged,
   }) {
-    return Container( height: 40.h,
-      padding:  EdgeInsets.symmetric(horizontal: 14.w),
+    return Container(
+      height: 40.h,
+      padding: EdgeInsets.symmetric(horizontal: 14.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(6.r),
-        border: Border.all(color:  Color(0xFFDDDDDD))),
+        border: Border.all(color: const Color(0xFFDDDDDD))),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: value,
-          dropdownColor:AppColors.arrow,
-          hint: Text('Select', style: AppTextStyles.overline),
-          icon: Icon(Icons.keyboard_arrow_down, color:AppColors.textOnDark, size: 20.sp),
-          isExpanded: true,
-          items: items.map((item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(item,style:AppTextStyles.caption.copyWith(color:AppColors.dropDown)),
-            );
-          }).toList(),
-          onChanged: onChanged,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            focusColor: Colors.transparent),
+          child: DropdownButton<String>(
+            value: value,
+            dropdownColor: AppColors.arrow,
+            hint: Text('Select', style: AppTextStyles.overline),
+            icon: Icon(Icons.keyboard_arrow_down, color: AppColors.textOnDark, size: 20.sp),
+            isExpanded: true,
+            focusColor: Colors.transparent,
+            items: items.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text( item,
+                  style: AppTextStyles.caption.copyWith(color: AppColors.white)),
+              );
+            }).toList(),
+            selectedItemBuilder: (BuildContext context) {
+              return items.map<Widget>((String item) {
+                return Align( alignment: Alignment.centerLeft,
+                  child: Text( item,
+                    style: AppTextStyles.caption.copyWith(color: const Color(0xFF0D0D0D))),
+                );
+              }).toList();
+            },
+            onChanged: onChanged,
+          ),
         ),
       ),
     );

@@ -152,15 +152,16 @@ class MeTabsView extends GetView<MeController> {
                 onTap: () => controller.selectedTab.value = i,
                 child: Padding(
                   padding:  EdgeInsets.only(right: 24.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child:IntrinsicWidth(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(tabs[i].tr, style: AppTextStyles.caption.copyWith(color: AppColors.white)),
                       SizedBox(height: 4.h),
                       if (selected)
-                        Container(height: 2.h, width: 50.h, color: AppColors.white),
+                        Container(height: 2.h, color: AppColors.white),
                     ],
-                  ),
+                  )),
                 ),
               );
             }),
