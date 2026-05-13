@@ -268,8 +268,8 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                      SizedBox(width: 4.w),
                     Flexible(
                       child: Text(_socialCtrl.formatCount(liveReactionCount),
-                          style: AppTextStyles.labelMedium.copyWith(color: AppColors.white),
-                          overflow: TextOverflow.ellipsis, maxLines: 1),
+                          style: AppTextStyles.labelMedium.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0),
+                          overflow: TextOverflow.visible, maxLines: 1),
                     ),
                   ],
                 );
@@ -281,7 +281,7 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                width: 60.w,
+                width: 70.w,
                 child: Obx(() {
                   final isLiked = _socialCtrl.isLiked(news, type: widget.tabType);
                   final Color likedColor = Colors.blue;
@@ -297,8 +297,8 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                         Flexible(
                           child: Text(
                             _socialCtrl.getAdjustedNewsLikes(news, type: widget.tabType),
-                            style: AppTextStyles.labelMedium.copyWith( color: isLiked ? Colors.blue : AppColors.white),
-                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyles.labelMedium.copyWith( color: isLiked ? Colors.blue : AppColors.white,letterSpacing: 0,height: 1.0),
+                            overflow: TextOverflow.visible,
                             maxLines: 1,
                           ),
                         ),
@@ -308,10 +308,10 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                 }),
               ),
 
-              SizedBox(width: 16.w),
+              SizedBox(width: 12.w),
 
               SizedBox(
-                width: 55.w,
+                width: 70.w,
                 child: GestureDetector(
                   onTap: () => _socialCtrl.openComments(
                       news.id, CommentSource.news, tabType: widget.tabType, author: news.author, news: news),
@@ -325,8 +325,8 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                       Flexible(
                         child: Obx(() => Text(
                           _socialCtrl.formatCount(_commentCount.value),
-                          style: AppTextStyles.labelMedium.copyWith(color: AppColors.white),
-                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.labelMedium.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0),
+                          overflow: TextOverflow.visible,
                           maxLines: 1,
                         )),
                       ),
@@ -335,7 +335,7 @@ class _CategoryNewsCardState extends State<CategoryNewsCard> {
                 ),
               ),
 
-               SizedBox(width: 16.w),
+               SizedBox(width: 12.w),
 
               GestureDetector(
                 onTap: () => _socialCtrl.share(

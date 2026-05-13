@@ -68,7 +68,9 @@ class _WriteCommentSheetState extends State<WriteCommentSheet> {
                   controller: commentController.commentTextController,
                 autofocus: true,
                 maxLines: null,
-                style: AppTextStyles.labelMedium,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  style: AppTextStyles.labelMedium,
                 decoration: InputDecoration(
                     hintText: 'Write a comment...',
                     hintStyle: AppTextStyles.overline,
@@ -131,16 +133,8 @@ class _WriteCommentSheetState extends State<WriteCommentSheet> {
                         }
                       }
                     },
-
-                    child: Container(
-                      width: 32.w,
-                      height: 32.h,
-                      decoration: BoxDecoration(
-                        color: Get.isDarkMode? Color(0xFF07345A):Color(0xFFA5D3F8),
-                        shape: BoxShape.circle),
-                      child: Center(
-                        child: SvgPicture.asset(AppAssets.send1Icon, height: 18.h, width: 18.w,
-                          colorFilter:ColorFilter.mode(AppColors.white, BlendMode.srcIn)))))),
+                        child: SvgPicture.asset(Get.isDarkMode?AppAssets.send3Icon:AppAssets.send4Icon, height: 32.h, width: 32.w,
+                          ))),
                 ],
               ),
             ),

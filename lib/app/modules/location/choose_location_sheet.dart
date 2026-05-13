@@ -76,6 +76,9 @@ class ChooseLocationSheet extends GetView<HomeController> {
                         border: Border.all(color:Get.isDarkMode? Color(0xFF6B6B6B):Color(0xFFEDEDED)),
                         borderRadius: BorderRadius.circular(10.r)),
                       child: TextField(
+                        autofocus: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
                         controller: controller.searchController,
                         style: AppTextStyles.caption.copyWith(color: Color(0xFFB8B8B8)),
                         onChanged: (val) => controller.searchQuery.value = val,

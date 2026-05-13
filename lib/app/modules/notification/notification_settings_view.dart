@@ -24,7 +24,7 @@ class NotificationSettingsView extends StatelessWidget {
             child: Icon(Icons.arrow_back_ios, color: AppColors.textOnDark, size: 20.sp),
           ),
           title: Text('notification_settings'.tr,
-              style: AppTextStyles.displaySmall.copyWith(color: AppColors.white)),
+              style: AppTextStyles.displaySmall.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0)),
           centerTitle: true,
         ),
         body: Obx(() => ListView(
@@ -39,21 +39,31 @@ class NotificationSettingsView extends StatelessWidget {
             _buildRoundedBox(
               isDark: isDark,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 4.h),
+                padding: EdgeInsets.fromLTRB(0.w, 8.h, 16.w, 4.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('number_of_notification'.tr,
-                        style: AppTextStyles.large.copyWith(color: AppColors.white)),
-                    SizedBox(height: 2.h),
-                    Text('control_frequency'.tr, style: AppTextStyles.overline),
-                    Slider(
-                      value: controller.frequency.value,
-                      divisions: 2,
-                      onChanged: (val) => controller.frequency.value = val,
-                      activeColor: Colors.blue,
-                      inactiveColor: AppColors.textOnDark,
-                    ),
+                        style: AppTextStyles.caption.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0)),
+                    SizedBox(height: 8.h),
+                    Text('control_frequency'.tr, style: AppTextStyles.overline.copyWith(letterSpacing: 0,height: 1.0)),
+                    SizedBox(height: 8.h),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        trackHeight: 1.h,
+                        overlayShape: SliderComponentShape.noOverlay,
+                        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.r),
+                          tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 3.r),
+                          activeTickMarkColor: AppColors.textGreen,
+                          inactiveTickMarkColor: AppColors.scaffoldBg,
+                          activeTrackColor: AppColors.textGreen,
+                          inactiveTrackColor: AppColors.scaffoldBg,
+                          thumbColor: AppColors.textGreen),
+                      child: Slider(
+                        value: controller.frequency.value,
+                        divisions: 4,
+                        onChanged: (val) => controller.frequency.value = val)),
+                    SizedBox(height: 4.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -181,12 +191,10 @@ class NotificationSettingsView extends StatelessWidget {
                     minimumSize: Size(100.w, 50.h),
                     side: BorderSide(
                       color: controller.isLockScreenEnabled.value
-                          ? AppColors.textGreen : Colors.red,
-                    ),
+                          ? AppColors.textGreen : Colors.red),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r)),
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
-                  ),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h)),
                   child: Text(
                     controller.isLockScreenEnabled.value ? 'enable'.tr : 'disable'.tr,
                     style: AppTextStyles.large.copyWith(
@@ -225,11 +233,11 @@ class NotificationSettingsView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         if (showLabel)
-          Text(label, style: AppTextStyles.large.copyWith(color: AppColors.white)),
+          Text(label, style: AppTextStyles.caption.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0)),
         SizedBox(
           height: 24,
           child: Transform.scale(
-            scale: 0.7,
+            scale: 0.5,
             child: Switch(
               value: value,
               onChanged: onChanged,
@@ -258,15 +266,14 @@ class NotificationSettingsView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: AppTextStyles.large.copyWith(color: AppColors.white)),
-              SizedBox(height: 4.h),
-              Text(subtitle,
-                  style: AppTextStyles.overline.copyWith(color: Colors.grey)),
+              Text(title, style: AppTextStyles.caption.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0)),
+              SizedBox(height: 8.h),
+              Text(subtitle, style: AppTextStyles.overline.copyWith(letterSpacing: 0,height: 1.5)),
             ],
           ),
         ),
         Transform.scale(
-          scale: 0.7,
+          scale: 0.5,
           child: Switch(
             value: value,
             onChanged: onChanged,
@@ -288,7 +295,7 @@ class NotificationSettingsView extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 4.h),
       child: Text(label,
-          style: AppTextStyles.button.copyWith(color: AppColors.textOnDark)),
+          style: AppTextStyles.button.copyWith(color: AppColors.textOnDark,letterSpacing: 0,height: 1.5)),
     );
   }
 }

@@ -55,6 +55,9 @@ class ManageLocationView extends StatelessWidget {
                         color: Get.isDarkMode?Color(0xFF121212):Colors.white,
                         borderRadius: BorderRadius.circular(8.r)),
                       child: TextField(
+                        autofocus: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
                         controller: controller.searchController,
                         style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
                         onSubmitted: (_) => controller.searchLocation(),

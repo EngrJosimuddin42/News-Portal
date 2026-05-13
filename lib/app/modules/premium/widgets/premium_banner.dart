@@ -21,15 +21,13 @@ class PremiumBanner extends StatelessWidget {
       SettingsController.to.selectedLanguage.value;
 
       return Container(
-        height: 150.h,
+        height: 145.h,
         width: 335.w,
-        padding: EdgeInsets.all(16.w),
+        padding: EdgeInsets.all(10.w),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isDark ? const Color(0xFF282828) : const Color(0xFFEDEDED),
-          ),
-          borderRadius: BorderRadius.circular(16.r),
-        ),
+            color: isDark ? const Color(0xFF282828) : const Color(0xFFEDEDED)),
+          borderRadius: BorderRadius.circular(16.r)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -48,8 +46,9 @@ class PremiumBanner extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(width: 2),
             Container(
-              height: 50,width: 100,
+              height: 40,width: 97,
               decoration: BoxDecoration(
                 gradient: AppColors.customGradient,
                 borderRadius: BorderRadius.circular(8.r)),

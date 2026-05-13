@@ -33,6 +33,9 @@ class TagLocationSheet extends GetView<CreatePostController> {
                         border: Border.all(color: AppColors.border),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: TextField(
+                      autofocus: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       controller: controller.locationSearchController,
                       style:AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
                       onChanged: (val) => controller.filterLocations(val),

@@ -34,6 +34,7 @@ class NewsDetailView extends GetView<HomeController> {
       appBar: AppBar(
         backgroundColor: AppColors.scaffoldBg,
         elevation: 0,
+        titleSpacing: 0,
         leading: GestureDetector(
           onTap: () => Get.back(),
           child: Icon(Icons.arrow_back_ios, color:AppColors.textOnDark, size: 20.sp)),
@@ -43,19 +44,22 @@ class NewsDetailView extends GetView<HomeController> {
               Get.lazyPut(() => NBotController());
             }
             Get.bottomSheet(
-              const NBotSheet(),
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              ignoreSafeArea: false);
+                const NBotSheet(),
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                ignoreSafeArea: false);
           },
-          child: Container( height: 36.h,
+          child: Container(
+            height: 36.h, width: 260.w,
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
             decoration: BoxDecoration(
-              border: Border.all(color:AppColors.border),
-              color:AppColors.scaffoldBg,
-              borderRadius: BorderRadius.circular(8.r)),
+                border: Border.all(color: AppColors.border),
+                color: AppColors.scaffoldBg,
+                borderRadius: BorderRadius.circular(8.r)),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(width: 12.w),
                 ShaderMask(
                     shaderCallback: (Rect bounds) {
                       return AppColors.aiGradient.createShader(bounds);
@@ -64,7 +68,9 @@ class NewsDetailView extends GetView<HomeController> {
                         colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn))),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text('ask_anything'.tr, style: AppTextStyles.overline)),
+                  child: Text('ask_anything'.tr, maxLines: 1,
+                    overflow: TextOverflow.visible,
+                    style: AppTextStyles.overline.copyWith( letterSpacing: 0, height: 1))),
               ],
             ),
           ),
@@ -73,6 +79,8 @@ class NewsDetailView extends GetView<HomeController> {
           Obx(() {
             final saved = socialCtrl.isSaved(news.id, type: 'news');
             return IconButton(
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
               icon: Icon(
                 saved ? Icons.bookmark : Icons.bookmark_border,
                 color: saved ? Colors.blueAccent : AppColors.textOnDark,size: 20.sp),
@@ -80,6 +88,8 @@ class NewsDetailView extends GetView<HomeController> {
             );
           }),
           IconButton(
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
             icon: Icon(Icons.more_vert, color: AppColors.textOnDark, size: 24.sp),
             onPressed: () => NewsBottomSheets.showMoreSheet(context, news),
           ),
@@ -104,24 +114,26 @@ class NewsDetailView extends GetView<HomeController> {
 
                       SvgPicture.asset(AppAssets.personIcon, height: 18.h, width: 18.w,
                           colorFilter: ColorFilter.mode(AppColors.info, BlendMode.srcIn)),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 4.w),
                       Flexible(
-                          child: Text(news.category, style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                              overflow: TextOverflow.ellipsis, maxLines: 1)),
-                      SizedBox(width: 8.w),
+                          child: Text(news.category, style: AppTextStyles.overline.copyWith(
+                            color: AppColors.info,letterSpacing: 0,height: 1.0,),
+                              overflow: TextOverflow.visible, maxLines: 1)),
+                      SizedBox(width: 18.w),
 
                       SvgPicture.asset(AppAssets.locationIcon, height: 18.h, width: 18.w,
                           colorFilter: ColorFilter.mode(AppColors.info, BlendMode.srcIn)),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 4.w),
                       Flexible(
                           child: Text(news.publisherMeta,
-                              style: AppTextStyles.overline.copyWith(color: AppColors.info),
-                              overflow: TextOverflow.ellipsis, maxLines: 1)),
-                      SizedBox(width: 8.w),
+                              style: AppTextStyles.overline.copyWith(
+                                color: AppColors.info,letterSpacing: 0,height: 1.0,),
+                              overflow: TextOverflow.visible, maxLines: 1)),
+                      SizedBox(width: 18.w),
 
                       SvgPicture.asset(AppAssets.timeIcon, height: 18.h, width: 18.w,
                           colorFilter: ColorFilter.mode(AppColors.info, BlendMode.srcIn)),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 4.w),
                       Flexible(
                           child: Text(
                               news.formattedTime.isNotEmpty

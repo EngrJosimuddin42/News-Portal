@@ -37,6 +37,9 @@ class MyGifPicker extends StatelessWidget {
                             color: Get.isDarkMode? const Color(0xFF121212):Colors.white,
                             borderRadius: BorderRadius.circular(8.r)),
                         child: TextField(
+                          autofocus: true,
+                            enableSuggestions: false,
+                            autocorrect: false,
                             style: AppTextStyles.caption.copyWith( color: AppColors.textOnDark),
                             textAlignVertical: TextAlignVertical.center,
                             onChanged: (val) =>  controller.gifSearchQuery.value = val,

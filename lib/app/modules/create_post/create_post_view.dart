@@ -40,6 +40,8 @@ class CreatePostView extends GetView<CreatePostController> {
           children: [
             TextField(
               controller: controller.textController,
+                enableSuggestions: false,
+                autocorrect: false,
                 maxLines: null,
                 minLines: 2,
               style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textOnDark),

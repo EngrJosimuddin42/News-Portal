@@ -82,7 +82,7 @@ class _SettingsViewState extends State<SettingsView> {
                   showArrow: false,
                   trailing: SizedBox(height: 12.h,
                       child: Transform.scale(
-                          scale: 0.7,
+                          scale: 0.5,
                           alignment: Alignment.centerRight,
                           child: Switch(
                               value: SettingsController.to.isDarkMode.value,
@@ -160,7 +160,7 @@ class _SettingsViewState extends State<SettingsView> {
                       color: Color(0xFF7B83EB),
                       borderRadius: BorderRadius.circular(12.r)),
                   child: Center(
-                    child: Text('log_out'.tr, style: AppTextStyles.button,
+                    child: Text('log_out'.tr, style: AppTextStyles.button.copyWith(color: Colors.white),
                         textAlign: TextAlign.center),
                   ),
                 ),

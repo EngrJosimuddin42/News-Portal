@@ -77,6 +77,8 @@ class HelpSupportView extends StatelessWidget {
                   color:Colors.white,
                   borderRadius: BorderRadius.circular(8.r)),
                 child: TextField(
+                  enableSuggestions: false,
+                  autocorrect: false,
                   controller: controller.searchController,
                   onChanged: controller.runSearch,
                   textAlignVertical: TextAlignVertical.center,

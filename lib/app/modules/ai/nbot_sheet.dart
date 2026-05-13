@@ -13,7 +13,11 @@ class NBotSheet extends GetView<NBotController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => NBotController());
+    
+    if (!Get.isRegistered<NBotController>()) {
+      Get.put(NBotController());
+    }
+
 
     return Container(
       width: double.infinity,
@@ -27,6 +31,7 @@ class NBotSheet extends GetView<NBotController> {
 
           Expanded(
             child: SingleChildScrollView(
+              controller: controller.scrollController,
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
@@ -53,7 +58,7 @@ class NBotSheet extends GetView<NBotController> {
                     },
                   )),
 
-                   SizedBox(height: 200.h),
+                   SizedBox(height: 170.h),
 
                   // Suggestions Section
                   Padding(
@@ -67,12 +72,12 @@ class NBotSheet extends GetView<NBotController> {
                           children: controller.suggestions.map((s) => GestureDetector(
                             onTap: () => controller.onSuggestionTap(s),
                             child: Container(
-                                padding:  EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+                                padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
                                 decoration: BoxDecoration(
                                     color: Get.isDarkMode? Color(0xFF383838):Colors.white,
                                     border: Border.all(color: AppColors.border),
                                     borderRadius: BorderRadius.circular(60.r)),
-                                child: Text(s, style: AppTextStyles.labelMedium.copyWith(color: AppColors.white))),
+                                child: Text(s, style: AppTextStyles.labelMedium.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0))),
                           )).toList(),
                         )),
                       ],
@@ -87,9 +92,9 @@ class NBotSheet extends GetView<NBotController> {
           // Input bar
           Padding(
             padding: EdgeInsets.only( left: 16.w, right: 16.w,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 16),
+                bottom: MediaQuery.of(context).viewInsets.bottom + 30),
             child: Container(
-              padding:EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+              padding:EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
               decoration: BoxDecoration(
                   border: Border.all(color: AppColors.border),
                   borderRadius: BorderRadius.circular(30.r)),
@@ -98,10 +103,12 @@ class NBotSheet extends GetView<NBotController> {
                   Expanded(
                     child: TextField(
                       controller: controller.textController,
+                        enableSuggestions: false,
+                        autocorrect: false,
                       style: AppTextStyles.overline,
                       decoration: InputDecoration(
                         hintText:  'ask_request_report'.tr,
-                        hintStyle: AppTextStyles.overline,
+                        hintStyle: AppTextStyles.overline.copyWith(letterSpacing: 0,height: 1.0),
                         border: InputBorder.none))),
                   Obx(() => GestureDetector(
                     onTap: controller.isResponding.value
@@ -111,26 +118,12 @@ class NBotSheet extends GetView<NBotController> {
                         ?  SizedBox( width: 32.w, height: 32.h,
                       child: Padding(
                         padding: EdgeInsets.all(6.w),
-                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.green),
-                      ),
-                    )
-                        : Container( width: 32.w, height: 32.h,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.border),
-                        color:AppColors.sheet,
-                        shape: BoxShape.circle),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          AppAssets.send1Icon,
-                          width: 20.w,
-                          height: 20.h,
-                          colorFilter: ColorFilter.mode(
-                            Color(0xFFB8B8B8),
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ),
-                    ),
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.green)))
+                        : SvgPicture.asset(
+                        Get.isDarkMode ? AppAssets.send2Icon : AppAssets.sendIcon,
+                          width: 32.w,
+                          height: 32.h,
+                          colorFilter: ColorFilter.mode( Color(0xFFB8B8B8), BlendMode.srcIn)),
                   )),
                 ],
               ),

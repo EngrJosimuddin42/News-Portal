@@ -14,11 +14,11 @@ class HomeTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.find<HomeController>();
 
-    return SizedBox( height: 40.h,
+    return SizedBox( height: 27.h,
       child:Obx(() => ListView.separated(
         scrollDirection: Axis.horizontal,
         physics: const ClampingScrollPhysics(),
-        padding:  EdgeInsets.symmetric(horizontal: 16.h),
+        padding:  EdgeInsets.symmetric(horizontal: 16.w),
         itemCount: c.tabs.length + 1,
         separatorBuilder: (context, index) =>  SizedBox(width: 8.w),
         itemBuilder: (_, i) {
@@ -26,7 +26,7 @@ class HomeTabBar extends StatelessWidget {
           if (i == 0) {
             return GestureDetector(
               onTap: c.onEditTabs,
-              child: Container(width: 32.w, height: 32.h,
+              child: Container(width: 32.w, height: 27.h,
                 alignment: Alignment.center,
                 child: SvgPicture.asset(AppAssets.plusIcon, width: 20.w, height: 20.h,
                     colorFilter:ColorFilter.mode(AppColors.surface,BlendMode.srcIn))),
@@ -40,18 +40,20 @@ class HomeTabBar extends StatelessWidget {
             return GestureDetector(
               onTap: () => c.onTabTap(tabIndex),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
+                  height: 27.h,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
                 decoration: BoxDecoration(
                   color: isSelected ? AppColors.surface : Colors.transparent,
-                  borderRadius: BorderRadius.circular(20.r)),
+                  borderRadius: BorderRadius.circular(60.r)),
                 child: Center(
-                child: Text( c.tabs[tabIndex].tr,  style: AppTextStyles.bodySmall.copyWith(
+                child: Text( c.tabs[tabIndex].tr,  style: AppTextStyles.labelSmall.copyWith(
                     color: isSelected
                         ? AppColors.background
                         : AppColors.white,
                     fontWeight: isSelected
                         ? FontWeight.w600
-                        : FontWeight.w400)))),
+                        : FontWeight.w400,
+                  letterSpacing: 0,height: 1.0)))),
             );
           });
         },

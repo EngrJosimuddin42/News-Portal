@@ -59,6 +59,7 @@ class _CreatorDashboardViewState extends State<CreatorDashboardView>
                       controller: _tabController,
                       indicatorColor: Colors.grey,
                       indicatorWeight: 2,
+                      indicatorSize: TabBarIndicatorSize.label,
                       labelStyle: AppTextStyles.bodySmall.copyWith(
                           color: isDark? Color(0xFF242424) : Color(0xFFDBDBDB)),
                       unselectedLabelStyle: AppTextStyles.caption.copyWith(

@@ -46,7 +46,7 @@ class PrivacyView extends StatelessWidget {
                  SizedBox(width: 12.w),
                 SizedBox( height: 30.h,
                   child: Transform.scale(
-                    scale: 0.7,
+                    scale: 0.5,
                     alignment: Alignment.centerRight,
                     child: Switch(
                       value: SettingsController.to.isLocationVisible.value,

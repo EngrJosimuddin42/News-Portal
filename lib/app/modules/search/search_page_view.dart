@@ -85,6 +85,8 @@ class SearchPageView extends GetView<SearchPageController> {
               child: TextField(
                 controller: controller.searchController,
                 autofocus: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
                 textAlignVertical: TextAlignVertical.center,
                 style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
                 decoration: InputDecoration(
@@ -111,6 +113,8 @@ class SearchPageView extends GetView<SearchPageController> {
         border: Border.all(color: Color(0xFFE6E6E6))),
       child: TextField(
         controller: controller.filterController,
+          enableSuggestions: false,
+          autocorrect: false,
         style: AppTextStyles.caption.copyWith(color: AppColors.textOnDark),
         decoration:  InputDecoration(
           hintText: 'find_an_item'.tr,

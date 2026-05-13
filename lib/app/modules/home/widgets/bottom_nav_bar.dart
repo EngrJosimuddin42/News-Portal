@@ -81,10 +81,9 @@ class HomeBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         iconPath,
-                        width: 24.0.w,
-                        height: 24.0.h,
-                      ),
-                      SizedBox(height: 4.h),
+                        width: 20.0.w,
+                        height: 20.0.w),
+                      SizedBox(height: 6.h),
                       Text(
                         items[i]['label']!.tr,
                         style: AppTextStyles.bodySmall.copyWith(

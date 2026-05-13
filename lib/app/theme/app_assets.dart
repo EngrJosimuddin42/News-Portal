@@ -50,6 +50,9 @@ class AppAssets {
   static const String messengerIcon = '$_basePath/messenger.svg';
   static const String sendIcon = '$_basePath/send.svg';
   static const String send1Icon = '$_basePath/send1.svg';
+  static const String send2Icon = '$_basePath/send2.svg';
+  static const String send3Icon = '$_basePath/send3.svg';
+  static const String send4Icon = '$_basePath/send4.svg';
   static const String whatsappIcon = '$_basePath/whatsapp.svg';
   static const String xLogoIcon = '$_basePath/x_logo.svg';
   static const String verifiedIcon = '$_basePath/verified.svg';

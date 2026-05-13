@@ -147,11 +147,8 @@ class NotificationItemCard extends StatelessWidget {
               reportSheet: selectedReportSheet,
             );
           },
-          child:  Padding(
-            padding: EdgeInsets.all(4.w),
-            child: Icon(Icons.more_vert, color:AppColors.white, size: 20.sp),
-          ),
-        ),
+            child: Icon(Icons.more_vert, color:AppColors.white, size: 20.sp)),
+
         SizedBox(height: 8.h),
         Stack(
           alignment: Alignment.center,
@@ -159,7 +156,7 @@ class NotificationItemCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: imageUrl.startsWith('http')
-                  ? Image.network(imageUrl, width: 100.w, height: 70.h, fit: BoxFit.cover,
+                  ? Image.network(imageUrl, width: 100.w, height: 80.h, fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => _errorPlaceholder())
                   : _errorPlaceholder()),
             if (hasVideo)
@@ -175,7 +172,7 @@ class NotificationItemCard extends StatelessWidget {
   }
 
   Widget _errorPlaceholder() =>
-      Container(width: 100.w, height: 70.h, color: Colors.grey[800],
+      Container(width: 100.w, height: 80.h, color: Colors.grey[800],
           child:  Icon(Icons.image, color: Colors.grey, size: 20.sp));
 
   Widget _buildEngagementRow(BuildContext context, SocialInteractionController socialCtrl, dynamic id, String type, String shareCount) {

@@ -87,6 +87,8 @@ class _SendFeedbackSheetState extends State<SendFeedbackSheet> {
                     borderRadius: BorderRadius.circular(8.r),
                     color: Colors.white),
                   child: TextField(
+                    enableSuggestions: false,
+                    autocorrect: false,
                     controller: _feedbackController,
                     maxLines: null,
                     expands: true,

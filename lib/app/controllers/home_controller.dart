@@ -301,7 +301,7 @@ class HomeController extends GetxController {
       publisherMeta: 'Beverly Hills,CA',
       timeAgo: '6 days ago',
       title: "For seven long years, he served without ever asking for anything in return. His name is Sergeant Diesel...",
-      imageUrl: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800',
+      imageUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400',
       category: 'Pets & Animals',
       author: 'Staff',
       imageCaption: 'Joe sussman / Shutterstock.com',
@@ -357,7 +357,7 @@ class HomeController extends GetxController {
       publisherMeta: 'Partner publisher · London, UK',
       timeAgo: '1d',
       title: "World Leaders Gather for Emergency Climate Summit...",
-      imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800',
+      imageUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400',
       category: 'World',
       body: 'Full content here...',
       likes: '7.5K',
@@ -485,7 +485,7 @@ class HomeController extends GetxController {
   final RxList<ReelModel> forYouClips = <ReelModel>[
     ReelModel(
       id: 3,
-      imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400',
+      imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       userProfileImage: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200',
       userName: 'Play Time',

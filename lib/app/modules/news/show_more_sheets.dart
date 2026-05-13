@@ -233,13 +233,15 @@ class NewsBottomSheets {
     bool isAiIcon = false,
   }) {
     return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+      horizontalTitleGap: 10.w,
       leading: isAiIcon
           ? ShaderMask(
         shaderCallback: (Rect bounds) => AppColors.aiGradient.createShader(bounds),
         child: SvgPicture.asset(
           AppAssets.starIcon,
-          width: 22.w,
-          height: 22.h,
+          width: 18.w,
+          height: 18.h,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
       )
@@ -248,10 +250,9 @@ class NewsBottomSheets {
         svgPath,
         width: 20.w,
         height: 20.h,
-        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-      )
+        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn))
           : (icon != null ? Icon(icon, color: iconColor, size: 20.sp) : null)),
-      title: Text(label.tr, style: AppTextStyles.caption.copyWith(color: labelColor)),
+      title: Text(label.tr, style: AppTextStyles.caption.copyWith(color: labelColor,letterSpacing: 0,height: 1.0,fontSize: 13.sp)),
       onTap: onTap,
       dense: true,
     );

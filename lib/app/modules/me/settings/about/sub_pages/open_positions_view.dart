@@ -108,6 +108,8 @@ class _OpenPositionsViewState extends State<OpenPositionsView> {
              SizedBox(width: 8.w),
             Expanded(
               child: TextField(
+                enableSuggestions: false,
+                autocorrect: false,
                 controller: _searchController,
                 onChanged: (v) => setState(() => _searchQuery = v),
                 style: AppTextStyles.caption.copyWith(color: Colors.black),

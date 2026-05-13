@@ -152,7 +152,9 @@ class EditProfileView extends StatelessWidget {
             border: Border.all(color: AppColors.textOnDark),
             borderRadius: BorderRadius.circular(6.r)),
           child: TextField(
-            controller: controller,
+              enableSuggestions: false,
+              autocorrect: false,
+              controller: controller,
             keyboardType: keyboardType,
             style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textOnDark),
             decoration:  InputDecoration(

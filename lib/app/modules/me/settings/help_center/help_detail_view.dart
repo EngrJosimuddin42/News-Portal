@@ -58,6 +58,8 @@ class HelpDetailView extends StatelessWidget {
                         border: Border.all(color: Get.isDarkMode?Color(0xFFDDDDDD):Color(0xFFEDEDED)),
                       borderRadius: BorderRadius.circular(8.r)),
                     child:TextField(
+                        enableSuggestions: false,
+                        autocorrect: false,
                         controller: controller.searchController,
                         onChanged: (value) => controller.runSearch(value),
                         textAlignVertical: TextAlignVertical.center,
