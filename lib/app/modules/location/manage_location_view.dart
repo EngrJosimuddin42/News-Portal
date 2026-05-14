@@ -17,7 +17,7 @@ class ManageLocationView extends StatelessWidget {
     final controller = Get.put(ManageLocationController());
     final adBanner = Get.find<AdBannerController>();
     return Scaffold(
-      backgroundColor:Get.isDarkMode? Colors.black:Colors.white,
+      backgroundColor:Get.isDarkMode? Colors.black :Colors.white,
       body: Stack(
         children: [
 
@@ -27,7 +27,7 @@ class ManageLocationView extends StatelessWidget {
             options: MapOptions(
               initialCenter: controller.center,
               initialZoom: 7,
-              onTap: (tapPosition, point) => controller.isLocationSelected.value = true),
+                onTap: (tapPosition, point) => controller.onMapTap(point)),
             children: [
               TileLayer(
                 urlTemplate: controller.currentMapUrl.value,

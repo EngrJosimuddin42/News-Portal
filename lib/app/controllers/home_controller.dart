@@ -42,6 +42,7 @@ class HomeController extends GetxController {
   var isLocationLoading = false.obs;
   var currentAddress = "".obs;
   String get locationTitle => selectedLocation.value?['city'] ?? 'choose_location'.tr;
+  var followedLocations = <Map<String, String>>[].obs;
 
 // Search & UI State
   final TextEditingController searchController = TextEditingController();
@@ -243,6 +244,15 @@ class HomeController extends GetxController {
     }).toList();
   }
 
+  void addFollowedLocation(Map<String, String> loc) {
+    bool exists = followedLocations.any((l) => l['city'] == loc['city']);
+    if (!exists) {
+      followedLocations.add(loc);
+      AppSnackbar.success(message: "${loc['city']} added to followed locations");
+    } else {
+      AppSnackbar.warning(title: 'Already Added', message: "${loc['city']} is already in your list");
+    }
+  }
 
   void addUserPost({
     required String text,    String? imageUrl,
