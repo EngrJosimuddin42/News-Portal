@@ -103,7 +103,7 @@ class _ReportBottomSheetState extends State<NotificationReportSheet> {
           },
           nextLabel: 'Submit',
         ),
-         SizedBox(height: 30.h),
+         SizedBox(height: 36.h),
       ],
     );
   }
@@ -145,7 +145,7 @@ class _ReportBottomSheetState extends State<NotificationReportSheet> {
           },
           nextLabel: 'Next',
         ),
-         SizedBox(height: 30.h),
+         SizedBox(height: 36.h),
       ],
     );
   }
@@ -192,7 +192,7 @@ class _ReportBottomSheetState extends State<NotificationReportSheet> {
             ),
           ),
         ),
-         SizedBox(height: 12.h),
+         SizedBox(height: 24.h),
       ],
     );
   }

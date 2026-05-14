@@ -120,7 +120,7 @@ class EditProfileView extends StatelessWidget {
 
           // Save button
           Padding(
-            padding: EdgeInsets.fromLTRB(16.w, 0.h, 16.w, 32.h),
+            padding: EdgeInsets.fromLTRB(16.w, 0.h, 16.w, 36.h),
             child: SizedBox( width: 335.w, height: 48.h,
               child: ElevatedButton(
                   onPressed: () => controller.saveProfile(),

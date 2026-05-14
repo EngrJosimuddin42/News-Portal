@@ -111,6 +111,7 @@ class AboutProfileSheet extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 36.h)
           ],
         ),
       );

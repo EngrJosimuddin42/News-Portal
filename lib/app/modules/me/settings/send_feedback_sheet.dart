@@ -118,7 +118,8 @@ class _SendFeedbackSheetState extends State<SendFeedbackSheet> {
                 backgroundColor:Color(0xFF7B83EB),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.r))),
-              child: Text('Send Feedback', style:AppTextStyles.bodySmall.copyWith(color:Colors.white))))))
+              child: Text('Send Feedback', style:AppTextStyles.bodySmall.copyWith(color:Colors.white)))))),
+          SizedBox(height: 16.h)
         ],
       ),
     );

@@ -89,6 +89,7 @@ class SignInView extends GetView<SignInController> {
           _buttons(),
            SizedBox(height: 10.h),
           _terms(),
+          SizedBox(height: 36.h)
         ],
       ),
     );

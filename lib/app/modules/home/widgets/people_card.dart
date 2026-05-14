@@ -27,7 +27,7 @@ class PeopleCard extends StatelessWidget {
       final isDark = SettingsController.to.isDarkMode.value;
 
       return Container(
-        width: 150.w, height: 175.h,
+        width: 150.w,height: 175.h,
         padding: EdgeInsets.all(6.w),
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF0B0B0B) : Colors.white,
@@ -55,11 +55,11 @@ class PeopleCard extends StatelessWidget {
             CircleAvatar(
               radius: 22.r,
               backgroundColor: isDark ? const Color(0xFF7A1CA4) : const Color(0xFF8920BA),
-              child: Text(name[0], style: AppTextStyles.tagline.copyWith(color: Colors.white)),
-            ),
+              child: Text(name[0], style: AppTextStyles.tagline.copyWith(color: Colors.white))),
             SizedBox(height: 8.h),
-            Text(name, style: AppTextStyles.button.copyWith(color: AppColors.white)),
-            Text(subtitle, style: AppTextStyles.overline.copyWith(color: const Color(0xFFA8A9AE), fontSize: 11.sp)),
+            Text(name, style: AppTextStyles.button.copyWith(color: AppColors.white, letterSpacing: 0, height: 1.0)),
+            SizedBox(height: 6.h),
+            Text(subtitle, style: AppTextStyles.overline.copyWith(color: const Color(0xFFA8A9AE), fontSize: 11.sp, letterSpacing: 0, height: 1.0)),
             SizedBox(height: 12.h),
             SizedBox(
               width: 125.w, height: 33.h,
@@ -68,11 +68,10 @@ class PeopleCard extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   backgroundColor: isFollowing ? AppColors.textOnDark : AppColors.textGreen,
                   side: BorderSide(color: isFollowing ? Colors.white24 : const Color(0xFF3498FA)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-                ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r))),
                 child: Text(
                   isFollowing ? 'following'.tr : '+ ${'follow'.tr}',
-                  style: AppTextStyles.buttonOutline.copyWith(
+                  style: AppTextStyles.buttonOutline.copyWith( letterSpacing: 0, height: 1.0,
                     color: isDark ? Colors.white : const Color(0xFFFFDFDF),
                   ),
                 ),

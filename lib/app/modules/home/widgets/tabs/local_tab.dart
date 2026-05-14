@@ -38,7 +38,7 @@ class LocalTab extends GetView<HomeController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/socket.png', width: 130.w, height: 130.h),
+          Image.asset('assets/images/socket.png', width: 130.w, height: 130.w),
            SizedBox(height: 16.h),
           Text(message, style: AppTextStyles.caption.copyWith(color: const Color(0xFF9B9B9B))),
           SizedBox(height: 16.h),

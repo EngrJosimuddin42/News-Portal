@@ -280,7 +280,7 @@ class NewsDetailView extends GetView<HomeController> {
                ],
             ),
           ),
-          SizedBox(height: 32.h)
+          SizedBox(height: 36.h)
          ]
          ),
         );

@@ -130,7 +130,7 @@ class OptionsBottomSheet {
                 },
               ),
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: 36.h),
           ],
         ),
       ),

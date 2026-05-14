@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app/bindings/app_binding.dart';
 import 'app/controllers/me/settings/settings_controller.dart';
 import 'app/routes/app_pages.dart';
@@ -13,7 +13,6 @@ import 'app/theme/app_translations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -30,8 +29,6 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return Obx(() {
-
-          // text scale
           final scale = SettingsController.to.selectedTextSize.value == 'Small'
               ? 0.85
               : SettingsController.to.selectedTextSize.value == 'Large'
@@ -46,13 +43,11 @@ class MyApp extends StatelessWidget {
             title: 'Newsbreak',
             debugShowCheckedModeBanner: false,
 
-            //language change
             translations: AppTranslations(),
             locale: currentLocale,
             fallbackLocale: const Locale('en', 'US'),
 
-            //Data picker
-            localizationsDelegates:[
+            localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
@@ -65,7 +60,10 @@ class MyApp extends StatelessWidget {
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                  textScaler: TextScaler.linear(scale)),
+                  textScaler: TextScaler.linear(
+                    MediaQuery.of(context).textScaler.scale(1.0) * scale,
+                  ),
+                ),
                 child: child!,
               );
             },
@@ -74,6 +72,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               brightness: Brightness.light,
               scaffoldBackgroundColor: AppColors.scaffoldBg,
+              fontFamily: GoogleFonts.hindSiliguri().fontFamily,
               appBarTheme: AppBarTheme(
                 backgroundColor: AppColors.scaffoldBg,
                 elevation: 0,
@@ -85,6 +84,7 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeData(
               brightness: Brightness.dark,
               scaffoldBackgroundColor: AppColors.scaffoldBg,
+              fontFamily: GoogleFonts.hindSiliguri().fontFamily,
               appBarTheme: AppBarTheme(
                 backgroundColor: AppColors.scaffoldBg,
                 elevation: 0,

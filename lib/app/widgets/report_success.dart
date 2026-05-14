@@ -43,7 +43,7 @@ class ReportSuccess extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
                 padding: EdgeInsets.symmetric(vertical: 12.h)),
               child:Text('Done', style: AppTextStyles.bodySmall.copyWith(color: Get.isDarkMode?Color(0xFF242424):Color(0xFFDBDBDB))))),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
         ],
       ),
     );
