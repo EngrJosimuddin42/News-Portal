@@ -99,7 +99,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             GestureDetector(
               onTap: () => Get.to(() => const PremiumScreen()),
               child: Container(
-                height: 32, width: 80,
+                height: 32.h, width: 83.w,
                 padding: EdgeInsets.symmetric(horizontal: 2.w),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -113,15 +113,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Text(
                   'upgrade'.tr,
                   style: AppTextStyles.textSmall.copyWith(
-                    letterSpacing: 0,
-                    height: 1.0,
-                    fontSize: 10,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-
+                    letterSpacing: 0, height: 1.0, fontSize: 10, color: Colors.white)))),
             SizedBox(width: 8.w),
           ],
         ),

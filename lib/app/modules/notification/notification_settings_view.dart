@@ -181,6 +181,7 @@ class NotificationSettingsView extends StatelessWidget {
               ),
             ),
 
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 10.w),
               child: Obx(() => Align(
@@ -205,6 +206,7 @@ class NotificationSettingsView extends StatelessWidget {
                 ),
               )),
             ),
+
           ],
         )),
       );

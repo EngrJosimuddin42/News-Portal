@@ -92,7 +92,8 @@ class NBotSheet extends GetView<NBotController> {
           // Input bar
           Padding(
             padding: EdgeInsets.only( left: 16.w, right: 16.w,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 30),
+                bottom: MediaQuery.of(context).viewInsets.bottom +
+                    MediaQuery.of(context).padding.bottom + 12),
             child: Container(
               padding:EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
               decoration: BoxDecoration(
@@ -129,7 +130,6 @@ class NBotSheet extends GetView<NBotController> {
               ),
             ),
           ),
-          SizedBox(height: 12.h)
         ],
       ),
     );

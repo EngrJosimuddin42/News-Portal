@@ -21,7 +21,7 @@ class PremiumBanner extends StatelessWidget {
       SettingsController.to.selectedLanguage.value;
 
       return Container(
-        height: 145.h,
+        height: 148.h,
         width: 335.w,
         padding: EdgeInsets.all(10.w),
         decoration: BoxDecoration(
@@ -42,13 +42,13 @@ class PremiumBanner extends StatelessWidget {
                   SizedBox(height:12.h),
                   Text(controller.bannerSubtitle,
                     style: AppTextStyles.overline.copyWith(
-                      color: AppColors.info,letterSpacing: 0,height: 1.5,)),
+                      color: AppColors.info,letterSpacing: 0,height: 1.5,fontSize: 11)),
                 ],
               ),
             ),
             SizedBox(width: 2),
             Container(
-              height: 40,width: 97,
+              height: 40.h,width: 105.w,
               decoration: BoxDecoration(
                 gradient: AppColors.customGradient,
                 borderRadius: BorderRadius.circular(8.r)),
@@ -64,7 +64,8 @@ class PremiumBanner extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h)),
                 child: Text(
                   controller.bannerButtonText,
-                  style: AppTextStyles.textSmall.copyWith(color: Colors.white),
+                  style: AppTextStyles.textSmall.copyWith(
+                    color: Colors.white, letterSpacing: 0, height: 1.0,fontSize: 10),
                 ),
               ),
             ),
