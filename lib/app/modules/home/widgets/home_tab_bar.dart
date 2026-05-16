@@ -14,7 +14,12 @@ class HomeTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.find<HomeController>();
 
-    return SizedBox( height: 27.h,
+
+    // ── Text scale
+    final textScale = MediaQuery.textScalerOf(context).scale(1.0);
+    final tabBarHeight = textScale >= 1.2 ? 30.h : 28.h;
+
+    return SizedBox( height: tabBarHeight,
       child:Obx(() => ListView.separated(
         scrollDirection: Axis.horizontal,
         physics: const ClampingScrollPhysics(),
@@ -27,9 +32,9 @@ class HomeTabBar extends StatelessWidget {
             return GestureDetector(
               onTap: c.onEditTabs,
               child: Container(width: 32.w, height: 27.h,
-                alignment: Alignment.center,
-                child: SvgPicture.asset(AppAssets.plusIcon, width: 20.w, height: 20.h,
-                    colorFilter:ColorFilter.mode(AppColors.surface,BlendMode.srcIn))),
+                  alignment: Alignment.center,
+                  child: SvgPicture.asset(AppAssets.plusIcon, width: 20.w, height: 20.h,
+                      colorFilter:ColorFilter.mode(AppColors.white,BlendMode.srcIn))),
             );
           }
 
@@ -41,24 +46,24 @@ class HomeTabBar extends StatelessWidget {
               onTap: () => c.onTabTap(tabIndex),
               child: Container(
                   height: 27.h,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppColors.surface : Colors.transparent,
-                  borderRadius: BorderRadius.circular(60.r)),
-                child: Center(
-                child: Text( c.tabs[tabIndex].tr,  style: AppTextStyles.labelSmall.copyWith(
-                    color: isSelected
-                        ? AppColors.background
-                        : AppColors.white,
-                    fontWeight: isSelected
-                        ? FontWeight.w600
-                        : FontWeight.w400,
-                  letterSpacing: 0,height: 1.0)))),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                  decoration: BoxDecoration(
+                      color: isSelected ? AppColors.surface : Colors.transparent,
+                      borderRadius: BorderRadius.circular(60.r)),
+                  child: Center(
+                      child: Text( c.tabs[tabIndex].tr,  style: AppTextStyles.labelSmall.copyWith(
+                          color: isSelected
+                              ? AppColors.background
+                              : AppColors.white,
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                          letterSpacing: 0,height: 1.0)))),
             );
           });
         },
       ),
-    ),
+      ),
     );
   }
 }

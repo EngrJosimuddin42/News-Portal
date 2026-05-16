@@ -62,7 +62,7 @@ class PeopleCard extends StatelessWidget {
             Text(subtitle, style: AppTextStyles.overline.copyWith(color: const Color(0xFFA8A9AE), fontSize: 11.sp, letterSpacing: 0, height: 1.0)),
             SizedBox(height: 12.h),
             SizedBox(
-              width: 125.w, height: 33.h,
+              width: 125.w, height: 31.h,
               child: OutlinedButton(
                 onPressed: onFollow,
                 style: OutlinedButton.styleFrom(

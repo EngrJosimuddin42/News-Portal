@@ -21,7 +21,7 @@ class PremiumBanner extends StatelessWidget {
       SettingsController.to.selectedLanguage.value;
 
       return Container(
-        height: 148.h,
+        height: 157.h,
         width: 335.w,
         padding: EdgeInsets.all(10.w),
         decoration: BoxDecoration(
