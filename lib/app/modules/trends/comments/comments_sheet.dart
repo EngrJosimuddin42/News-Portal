@@ -93,8 +93,7 @@ class _CommentsSheetState extends State<CommentsSheet> {
 
           // Write comment input
           Container(
-            padding: EdgeInsets.only( left: 12.w, right: 12.w, top: 12.h,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 12),
+            padding: EdgeInsets.only( left: 12.w, right: 12.w, top: 12.h, bottom: 36),
             child: GestureDetector(
               onTap: () => _showWriteCommentSheet(context, widget.id),
               child: Container( height: 44.h,
@@ -123,7 +122,6 @@ class _CommentsSheetState extends State<CommentsSheet> {
               ),
             ),
           ),
-          SizedBox(height: 20.h),
         ],
       ),
     );
@@ -325,6 +323,7 @@ class _CommentsSheetState extends State<CommentsSheet> {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
+        useRootNavigator: true,
         backgroundColor: Colors.transparent,
         constraints:
         BoxConstraints(maxWidth: MediaQuery.of(context).size.width),

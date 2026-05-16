@@ -34,10 +34,12 @@ class LocalTab extends GetView<HomeController> {
   }
 
   Widget _buildWithoutLocation() {
-    return Center(
+    return SingleChildScrollView(
+        child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 50.h),
           Image.asset('assets/images/socket.png', width: 130.w, height: 130.w),
            SizedBox(height: 16.h),
           Text(message, style: AppTextStyles.caption.copyWith(color: const Color(0xFF9B9B9B))),
@@ -54,6 +56,7 @@ class LocalTab extends GetView<HomeController> {
               child: Text('Try Again', style: AppTextStyles.caption.copyWith(color:Get.isDarkMode?Color(0xFF7B83EB):Color(0xFF7B82EB)))),
         ],
       ),
+    ),
     );
   }
 

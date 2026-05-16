@@ -106,6 +106,10 @@ class MeController extends GetxController {
       context: Get.context!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(Get.context!).size.width,
+        maxHeight: MediaQuery.of(Get.context!).size.height * 0.84,
+      ),
       builder: (_) => const NBotSheet(),
     );
   }

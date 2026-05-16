@@ -343,10 +343,13 @@ class EditProfileView extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor:AppColors.search,
-        title:Text('delete_account_confirm'.tr,
-            style:AppTextStyles.caption.copyWith(color: AppColors.white), textAlign: TextAlign.center),
+        insetPadding: EdgeInsets.symmetric(horizontal: 10.w),
+        title:SizedBox(
+            width: 335.w,
+            child:Text('delete_account_confirm'.tr,
+            style:AppTextStyles.caption.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0), textAlign: TextAlign.start)),
         content: Text('delete_account_desc'.tr,
-          style:AppTextStyles.caption.copyWith(color: AppColors.white), textAlign: TextAlign.center),
+          style:AppTextStyles.caption.copyWith(color: AppColors.white,letterSpacing: 0,height: 1.0), textAlign: TextAlign.start),
         actions: [
           TextButton(
             onPressed: () {

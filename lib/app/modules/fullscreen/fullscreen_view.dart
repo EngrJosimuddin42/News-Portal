@@ -11,6 +11,7 @@ class FullscreenView extends GetView<FullscreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.scaffoldBg,
       body: SafeArea(
         child: Padding(

@@ -22,6 +22,7 @@ class NewsBottomSheets {
     final socialCtrl = Get.find<SocialInteractionController>();
     final controller = Get.find<HomeController>();
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     showModalBottomSheet(
       context: context,
@@ -29,16 +30,14 @@ class NewsBottomSheets {
       constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
       isScrollControlled: true,
       builder: (_) => DraggableScrollableSheet(
-        initialChildSize: 0.55,
+        initialChildSize: 0.62,
         minChildSize: 0.4,
         maxChildSize: 0.9,
         expand: false,
         builder: (_, scrollController) => Container(
           decoration: BoxDecoration(
             color: isDark ? const Color(0xFF252525) : const Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-          ),
-          child: SafeArea(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20.r))),
             child: SingleChildScrollView(
               controller: scrollController,
               child: Column(
@@ -151,10 +150,8 @@ class NewsBottomSheets {
                       decoration: BoxDecoration(
                         color: AppColors.scaffoldBg,
                         border: Border.all(
-                          color: isDark ? Colors.black : const Color(0xFFEDEDED),
-                        ),
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
+                          color: isDark ? Colors.black : const Color(0xFFEDEDED)),
+                        borderRadius: BorderRadius.circular(8.r)),
                       child: _optionTile(
                         isAiIcon: true,
                         label: 'ask_request_report',
@@ -164,21 +161,26 @@ class NewsBottomSheets {
                           if (!Get.isRegistered<NBotController>()) {
                             Get.lazyPut(() => NBotController());
                           }
-                          Get.bottomSheet(
-                            const NBotSheet(),
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            ignoreSafeArea: false,
-                          );
+                          Future.microtask(() {
+                            showModalBottomSheet(
+                              context: Get.context!,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              constraints: BoxConstraints(
+                                maxWidth: MediaQuery.of(Get.context!).size.width,
+                                maxHeight: MediaQuery.of(Get.context!).size.height * 0.84,
+                              ),
+                              builder: (_) => const NBotSheet(),
+                            );
+                          });
                         },
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: bottomPadding > 0 ? bottomPadding + 8.h : 20.h),
                 ],
               ),
             ),
-          ),
         ),
       ),
     );

@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:news_break/app/theme/app_colors.dart';
 import 'package:news_break/app/theme/app_text_styles.dart';
-import '../../controllers/home_controller.dart';
 import '../../controllers/nbot_controller.dart';
 import '../../controllers/signin_controller.dart';
 import '../../controllers/social_interaction_controller.dart';
@@ -19,18 +18,32 @@ import '../ai/nbot_sheet.dart';
 import '../signin/signin_view.dart';
 import 'show_more_sheets.dart';
 
-class NewsDetailView extends GetView<HomeController> {
+class NewsDetailView extends StatefulWidget {
   const NewsDetailView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final socialCtrl = Get.find<SocialInteractionController>();
-    final dynamic args = Get.arguments;
-    final NewsModel news = (args is Map) ? args['news'] : args;
-    final String tabType = (args is Map) ? (args['tabType'] ?? 'news') : 'news';
+  State<NewsDetailView> createState() => _NewsDetailViewState();
+}
 
+class _NewsDetailViewState extends State<NewsDetailView> {
+  late final NewsModel news;
+  late final String tabType;
+  late final SocialInteractionController socialCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    socialCtrl = Get.find<SocialInteractionController>();
+    final dynamic args = Get.arguments;
+    news = (args is Map) ? args['news'] as NewsModel : args as NewsModel;
+    tabType = (args is Map) ? (args['tabType'] ?? 'news') : 'news';
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppColors.scaffoldBg,
+      backgroundColor: AppColors.scaffoldBg,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.scaffoldBg,
         elevation: 0,
@@ -43,11 +56,15 @@ class NewsDetailView extends GetView<HomeController> {
             if (!Get.isRegistered<NBotController>()) {
               Get.lazyPut(() => NBotController());
             }
-            Get.bottomSheet(
-                const NBotSheet(),
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                ignoreSafeArea: false);
+            showModalBottomSheet(
+              context: Get.context!,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(Get.context!).size.width,
+                maxHeight: MediaQuery.of(Get.context!).size.height * 0.84),
+              builder: (_) => const NBotSheet(),
+            );
           },
           child: Container(
             height: 36.h, width: 260.w,
@@ -280,7 +297,7 @@ class NewsDetailView extends GetView<HomeController> {
                ],
             ),
           ),
-          SizedBox(height: 36.h)
+          SizedBox(height: MediaQuery.of(context).padding.bottom + 16.h)
          ]
          ),
         );

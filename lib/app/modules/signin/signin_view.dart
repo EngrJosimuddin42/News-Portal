@@ -22,6 +22,7 @@ class SignInView extends GetView<SignInController> {
     final bool isDark = Get.isDarkMode;
     final Color iconColor = isDark ? Colors.white : Colors.black;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: isDark ? Colors.black : Colors.white,
       body: SafeArea(
         child: Padding(

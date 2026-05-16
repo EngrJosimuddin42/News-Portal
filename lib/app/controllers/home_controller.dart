@@ -189,10 +189,16 @@ class HomeController extends GetxController {
 
   void onAI() {
     showModalBottomSheet(
-        context: Get.context!,
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        builder: (_) => const NBotSheet());}
+      context: Get.context!,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(Get.context!).size.width,
+        maxHeight: MediaQuery.of(Get.context!).size.height * 0.84,
+      ),
+      builder: (_) => const NBotSheet(),
+    );
+  }
 
   void onChooseLocation() {
     Get.bottomSheet(
